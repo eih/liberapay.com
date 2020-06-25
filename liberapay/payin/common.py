@@ -40,7 +40,7 @@ def prepare_payin(db, payer, amount, route, off_session=False):
     assert route.participant == payer, (route.participant, payer)
     assert route.status in ('pending', 'chargeable')
 
-    if payer.is_suspended:
+    if payer.is_suspended or not payer.get_email_address():
         raise AccountSuspended()
 
     with db.get_cursor() as cursor:
@@ -77,34 +77,30 @@ def update_payin(
     """
     with db.get_cursor() as cursor:
         payin = cursor.one("""
-            WITH old AS (
-                SELECT * FROM payins WHERE id = %(payin_id)s
-            )
             UPDATE payins
                SET status = %(status)s
                  , error = %(error)s
-                 , remote_id = coalesce(%(remote_id)s, remote_id)
-                 , amount_settled = COALESCE(%(amount_settled)s, amount_settled)
-                 , fee = COALESCE(%(fee)s, fee)
-                 , intent_id = coalesce(%(intent_id)s, intent_id)
+                 , remote_id = coalesce(remote_id, %(remote_id)s)
+                 , amount_settled = coalesce(amount_settled, %(amount_settled)s)
+                 , fee = coalesce(fee, %(fee)s)
+                 , intent_id = coalesce(intent_id, %(intent_id)s)
                  , refunded_amount = coalesce(%(refunded_amount)s, refunded_amount)
              WHERE id = %(payin_id)s
-               AND ( status <> %(status)s OR
-                     coalesce_currency_amount(%(refunded_amount)s, amount::currency) <>
-                     coalesce_currency_amount(refunded_amount, amount::currency)
-                   )
          RETURNING *
-                 , (SELECT status FROM old) AS old_status
+                 , (SELECT status FROM payins WHERE id = %(payin_id)s) AS old_status
         """, locals())
         if not payin:
-            return cursor.one("SELECT * FROM payins WHERE id = %s", (payin_id,))
+            return
+        if remote_id and payin.remote_id != remote_id:
+            raise AssertionError(f"the remote IDs don't match: {payin.remote_id!r} != {remote_id!r}")
+        if status == payin.old_status:
+            return payin
 
-        if payin.status != payin.old_status:
-            cursor.run("""
-                INSERT INTO payin_events
-                       (payin, status, error, timestamp)
-                VALUES (%s, %s, %s, current_timestamp)
-            """, (payin_id, status, error))
+        cursor.run("""
+            INSERT INTO payin_events
+                   (payin, status, error, timestamp)
+            VALUES (%s, %s, %s, current_timestamp)
+        """, (payin_id, status, error))
 
         if payin.status in ('pending', 'succeeded'):
             cursor.run("""
@@ -219,7 +215,7 @@ def adjust_payin_transfers(db, payin, net_amount):
                FOR UPDATE OF pt
         """, (payin.id,))
         assert payin_transfers
-        if all(pt.remote_id is not None or pt.status == 'failed' for pt in payin_transfers):
+        if all(pt.status == 'succeeded' for pt in payin_transfers):
             # It's too late to adjust anything.
             return
         transfers_by_tippee = group_by(
@@ -229,16 +225,17 @@ def adjust_payin_transfers(db, payin, net_amount):
             tippee: MoneyBasket(pt.amount for pt in grouped).fuzzy_sum(net_amount.currency)
             for tippee, grouped in transfers_by_tippee.items()
         })
+        teams = set(pt.team for pt in payin_transfers if pt.team is not None)
         updates = []
         for tippee, prorated_amount in prorated_amounts.items():
             transfers = transfers_by_tippee[tippee]
-            if len(transfers) > 1:
+            if tippee in teams:
                 team = transfers[0].team_p
                 tip = payer.get_tip_to(team)
                 try:
                     team_donations = resolve_team_donation(
                         db, team, provider, payer, payer_country,
-                        prorated_amount, tip.amount
+                        prorated_amount, tip.amount, sepa_only=True,
                     )
                 except (MissingPaymentAccount, NoSelfTipping):
                     team_amounts = resolve_amounts(prorated_amount, {
@@ -252,6 +249,8 @@ def adjust_payin_transfers(db, payin, net_amount):
                 else:
                     team_donations = {d.recipient.id: d for d in team_donations}
                     for pt in transfers:
+                        if pt.status == 'failed':
+                            continue
                         d = team_donations.pop(pt.recipient, None)
                         if d is None:
                             assert pt.remote_id is None and pt.status in ('pre', 'pending')
@@ -264,10 +263,12 @@ def adjust_payin_transfers(db, payin, net_amount):
                         elif pt.amount != d.amount:
                             assert pt.remote_id is None and pt.status in ('pre', 'pending')
                             updates.append((d.amount, pt.id))
+                    n_periods = prorated_amount / tip.periodic_amount
                     for d in team_donations.values():
+                        unit_amount = (d.amount / n_periods).round_up()
                         prepare_payin_transfer(
                             db, payin, d.recipient, d.destination, 'team-donation',
-                            d.amount, tip.periodic_amount, tip.period,
+                            d.amount, unit_amount, tip.period,
                             team=team.id
                         )
             else:
@@ -284,7 +285,10 @@ def adjust_payin_transfers(db, payin, net_amount):
             """, updates)
 
 
-def prepare_donation(db, payin, tip, tippee, provider, payer, payer_country, payment_amount):
+def prepare_donation(
+    db, payin, tip, tippee, provider, payer, payer_country, payment_amount,
+    sepa_only=False,
+):
     """Prepare to distribute a donation.
 
     Args:
@@ -317,7 +321,8 @@ def prepare_donation(db, payin, tip, tippee, provider, payer, payer_country, pay
     r = []
     if tippee.kind == 'group':
         team_donations = resolve_team_donation(
-            db, tippee, provider, payer, payer_country, payment_amount, tip.amount
+            db, tippee, provider, payer, payer_country, payment_amount, tip.amount,
+            sepa_only=sepa_only
         )
         n_periods = payment_amount / tip.periodic_amount
         for d in team_donations:
@@ -377,7 +382,8 @@ def resolve_destination(db, tippee, provider, payer, payer_country, payin_amount
 
 
 def resolve_team_donation(
-    db, team, provider, payer, payer_country, payment_amount, weekly_amount
+    db, team, provider, payer, payer_country, payment_amount, weekly_amount,
+    sepa_only=False,
 ):
     """Figure out how to distribute a donation to a team's members.
 
@@ -420,7 +426,7 @@ def resolve_team_donation(
         raise NoSelfTipping()
     # Try to distribute the donation to multiple members.
     other_members = set(t.member for t in members if t.member != payer.id)
-    if other_members and provider == 'stripe':
+    if sepa_only or other_members and provider == 'stripe':
         sepa_accounts = {a.participant: a for a in db.all("""
             SELECT DISTINCT ON (a.participant) a.*
               FROM payment_accounts a
@@ -432,7 +438,7 @@ def resolve_team_donation(
                  , a.default_currency = %(currency)s DESC
                  , a.connection_ts
         """, dict(members=other_members, SEPA=SEPA, currency=currency))}
-        if len(sepa_accounts) > 1 and members[0].member in sepa_accounts:
+        if sepa_only or len(sepa_accounts) > 1 and members[0].member in sepa_accounts:
             selected_takes = [
                 t for t in members if t.member in sepa_accounts and t.amount != 0
             ]
@@ -447,6 +453,8 @@ def resolve_team_donation(
                     )
                     for t in selected_takes if t.resolved_amount != 0
                 ]
+            elif sepa_only:
+                raise MissingPaymentAccount(team)
     # Fall back to sending the entire donation to the member who "needs" it most.
     member = db.Participant.from_id(members[0].member)
     account = resolve_destination(db, member, provider, payer, payer_country, payment_amount)
@@ -612,34 +620,30 @@ def update_payin_transfer(
     """
     with db.get_cursor() as cursor:
         pt = cursor.one("""
-            WITH old AS (
-                SELECT * FROM payin_transfers WHERE id = %(pt_id)s
-            )
             UPDATE payin_transfers
                SET status = %(status)s
                  , error = %(error)s
-                 , remote_id = coalesce(%(remote_id)s, remote_id)
+                 , remote_id = coalesce(remote_id, %(remote_id)s)
                  , amount = COALESCE(%(amount)s, amount)
                  , fee = COALESCE(%(fee)s, fee)
                  , reversed_amount = coalesce(%(reversed_amount)s, reversed_amount)
              WHERE id = %(pt_id)s
-               AND ( status <> %(status)s OR
-                     coalesce_currency_amount(%(reversed_amount)s, amount::currency) <>
-                     coalesce_currency_amount(reversed_amount, amount::currency)
-                   )
          RETURNING *
-                 , (SELECT reversed_amount FROM old) AS old_reversed_amount
-                 , (SELECT status FROM old) AS old_status
+                 , (SELECT reversed_amount FROM payin_transfers WHERE id = %(pt_id)s) AS old_reversed_amount
+                 , (SELECT status FROM payin_transfers WHERE id = %(pt_id)s) AS old_status
         """, locals())
         if not pt:
-            return cursor.one("SELECT * FROM payin_transfers WHERE id = %s", (pt_id,))
+            return
+        if remote_id and pt.remote_id != remote_id:
+            raise AssertionError(f"the remote IDs don't match: {pt.remote_id!r} != {remote_id!r}")
+        if pt.status == pt.old_status:
+            return pt
 
-        if pt.status != pt.old_status:
-            cursor.run("""
-                INSERT INTO payin_transfer_events
-                       (payin_transfer, status, error, timestamp)
-                VALUES (%s, %s, %s, current_timestamp)
-            """, (pt_id, status, error))
+        cursor.run("""
+            INSERT INTO payin_transfer_events
+                   (payin_transfer, status, error, timestamp)
+            VALUES (%s, %s, %s, current_timestamp)
+        """, (pt_id, status, error))
 
         # If the payment has failed or hasn't been settled yet, then stop here.
         if status != 'succeeded':

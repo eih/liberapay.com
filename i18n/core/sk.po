@@ -465,6 +465,10 @@ msgstr "Ak ste nautorizovali túto platbu, dajte nám vedieť, preplatíme ju."
 msgid "Once this payment has been processed it should appear on your bank statement as “{descriptor}”."
 msgstr "Po spracovaní by táto platba mala byť na Vašom výpise z bankového účtu uvedená ako \"{descriptor}\"."
 
+#, python-brace-format
+msgid "Processing this kind of payment takes {timedelta} on average."
+msgstr ""
+
 msgid "Your payment has succeeded"
 msgstr "Vaša platba bola úspešne zrealizovaná"
 
@@ -1353,6 +1357,9 @@ msgstr "(preložené {x_percent})"
 msgid "Help us translate Liberapay"
 msgstr "Pomôžte nám prekladať Liberapay"
 
+msgid "Your account"
+msgstr ""
+
 msgid "Profile"
 msgstr "Profil"
 
@@ -1448,9 +1455,8 @@ msgstr[2] "{0} dostáva {1} za týždeň od {n} patrónov."
 msgid "Goal: {0}"
 msgstr "Cieľ: {0}"
 
-#, python-brace-format
-msgid "Donating ({amount})"
-msgstr "Prispieva ({amount})"
+msgid "Modify your donation"
+msgstr ""
 
 msgid "Pledge"
 msgstr "Prísľub"
@@ -1478,6 +1484,12 @@ msgstr "Heslo (volitelné)"
 msgid "If you've {bold}lost your password{bold_end}, or if your account doesn't have a password at all, then leave the password field empty. We'll send you a login link via email."
 msgstr "Pokiaľ ste {bold}zabudli svoje heslo{bold_end} alebo váš účet vôbec nemal heslo, nechajte pole pre heslo prázdne. Pošleme vám odkaz pre prihlásenie pomocou emailu."
 
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Default avatar"
+msgstr ""
+
 msgid "Find great people to donate to"
 msgstr "Nájdite skvelých ludí ktorým môžete prispieť"
 
@@ -1489,9 +1501,6 @@ msgstr "Odpojiť"
 
 msgid "This is not supported yet"
 msgstr "Toto ešte nie je podporované"
-
-msgid "Connect"
-msgstr "Pripojiť sa"
 
 msgid "username"
 msgstr "užívateľské meno"
@@ -1565,6 +1574,10 @@ msgstr "Názov organizácie"
 msgid "Headquarters Address"
 msgstr "Adresa sídla"
 
+#, python-brace-format
+msgid "Show the {submenu_label} submenu"
+msgstr ""
+
 msgid "Introduction"
 msgstr "Predstavenie"
 
@@ -1616,9 +1629,6 @@ msgstr "Komunity"
 
 msgid "Name"
 msgstr "Meno"
-
-msgid "Avatar"
-msgstr "Avatar"
 
 msgid "Currencies"
 msgstr "Meny"
@@ -1709,9 +1719,6 @@ msgid "per week"
 msgstr "týždenne"
 
 msgid "Modify your pledge"
-msgstr ""
-
-msgid "Modify your donation"
 msgstr ""
 
 msgid "Pledges"
@@ -2136,6 +2143,16 @@ msgstr "Stripe automaticky konvertuje prostriedky do vašej hlavnej meny, ale Pa
 msgid "Connecting the accounts you own on other platforms makes your Liberapay profile easier to find, and helps to demonstrate that you are who you claim to be."
 msgstr "Spojením s účtami, ktoré vlastníte na iných platformách, uľahčíte hľadanie vášho Liberapay profilu a lepšie ukážete, že ste, za koho sa vydávate."
 
+#, python-brace-format
+msgid "You currently have {n} connected account:"
+msgid_plural "You currently have {n} connected accounts:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Connect an account"
+msgstr ""
+
 msgid "I'm grateful for gifts, but don't have a specific funding goal."
 msgstr "Som vďačný za dary ale nemám konkrétny finančný cieľ."
 
@@ -2259,6 +2276,13 @@ msgstr "Preskúmajte tímy"
 msgid "About teams"
 msgstr "O tímoch"
 
+#, python-brace-format
+msgid ""
+"When you modify your username, the web address of your profile changes accordingly. A redirect from the old URL to the new one is put in place, but any user can remove it by claiming your old username, so you should update all the links to your profile that you've placed on other websites, unless those links contain your immutable account ID ({account_id}) instead of your username.\n"
+"\n"
+"Are you sure you want to change your username?"
+msgstr ""
+
 msgid "Username"
 msgstr "Uživateľské meno"
 
@@ -2271,9 +2295,6 @@ msgstr "Maximálna dĺžka je {0}."
 
 msgid "Allowed characters: latin alphanumerics, dots (.), dashes (-), and underscores (_)."
 msgstr "Dovolené znaky: latinka písmená a čísla, bodky (.), pomlčky (-), a podtržníky (_)."
-
-msgid "Have you linked to your Liberapay profile from other websites? Be sure to update those links!"
-msgstr "Zdielali ste odkazy na Liberapay na iných stránkach? Nezabudnite tieto odkazy updaviť!"
 
 msgid "Name (optional)"
 msgstr "Názov (volitelný)"
@@ -2528,11 +2549,17 @@ msgstr "Karta"
 msgid "Currently unavailable"
 msgstr "Momentálne nedostupné"
 
+msgid "Pay by card"
+msgstr ""
+
 msgid "Euro donations only"
 msgstr "Príspevky len v eurách"
 
 msgid "Euro bank accounts only"
 msgstr "Len bankovné účty vedené v eurách"
+
+msgid "Pay by direct debit"
+msgstr ""
 
 #, python-brace-format
 msgid "Doesn't support the {currency}"
@@ -2543,6 +2570,9 @@ msgstr ""
 
 msgid "Not anonymous"
 msgstr "Nie anonymné"
+
+msgid "Pay with PayPal"
+msgstr ""
 
 #, python-brace-format
 msgid "Your donation to {team} cannot be processed because it would be sending money to yourself."
@@ -2780,6 +2810,20 @@ msgstr "Váš podiel je {0}."
 #, python-brace-format
 msgid "{username}'s profile"
 msgstr "Profil {username}"
+
+#, python-brace-format
+msgid "<unused singular (hash=8485a1bf550d6d1f52f5274e15580f6e)>"
+msgid_plural "This profile is available in {n} languages"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Show the list of languages"
+msgstr ""
+
+#, python-brace-format
+msgid "This profile is only available in {language}"
+msgstr ""
 
 msgid "Edit"
 msgstr "Upraviť"
@@ -3396,6 +3440,12 @@ msgid "You don't have any valid payment instrument."
 msgstr ""
 
 msgid "Add a payment instrument:"
+msgstr ""
+
+msgid "Add a card"
+msgstr ""
+
+msgid "Add a bank account"
 msgstr ""
 
 msgid "You still have money in this Liberapay account, please choose a disbursement method below or contact support."
@@ -4061,17 +4111,20 @@ msgstr "Odznaky z {link_open}shields.io{link_close}"
 msgid "Use these code snippets to add a badge to your website or README:"
 msgstr "Použite tieto kódy aby ste pridali odznak na vašu web stránku alebo súbor README:"
 
-msgid "To contact us privately:"
-msgstr "Kontaktujte nás sukromne:"
+msgid "To contact the Liberapay team privately:"
+msgstr ""
 
 msgid "Send us an email"
 msgstr "Pošlite nám email"
 
-msgid "We are currently able to answer in English and French."
-msgstr "V súčasnej dobe sme schopný odpovedať v angličtine a francúžtine."
+msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
+msgstr ""
 
 msgid "We currently don't have a phone number."
 msgstr "V súčasnej dobe nemáme telefónne číslo."
+
+msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
+msgstr ""
 
 msgid "To report a problem or make a suggestion in English:"
 msgstr "Nahlásiť chybu alebo námet v angličtine:"
@@ -4377,6 +4430,9 @@ msgid "We do our best to protect everyone's privacy: we do not attempt to track 
 msgstr "Robíme všetko preto, aby sme ochránili každého súkromie: nesnažíme sa sledovať ľudí čo navštevujú našu stránku, zbierame iba osobné údaje ktoré nevyhnutne nepotrebujeme a nepredávame ich žiadnej tretej strane."
 
 msgid "Cookies"
+msgstr ""
+
+msgid "A cookie is a piece of information sent by a website to your browser, stored on your machine, and resent by your browser to that same website in every subsequent request."
 msgstr ""
 
 msgid "The liberapay.com website only sets technical cookies which are required to authenticate the user or to perform a specific operation. These cookies are restricted to same-site requests, so we don't know who visits websites that contain Liberapay widgets."
@@ -5260,13 +5316,10 @@ msgstr "Emailová adresa {0} nemohla byť spojená s vašim účtom pretože bol
 
 #, python-brace-format
 msgid ""
-"We were unable to determine if you are a member of the {0} team on {1}.\n"
+"We were unable to determine if you are a member of the {team_name} team on {platform_name}.\n"
 "\n"
-"Please {2}check that you gave us the necessary permissions{3}."
+"Please {link_start}make sure your membership of the team is public{link_end}."
 msgstr ""
-"Neboli sme schopný zistiť či ste členom tímu {0} na {1}.\n"
-"\n"
-"Prosím {2}skontrolujte, či ste nám dal potrebné oprávnenia{3}."
 
 #, python-brace-format
 msgid "Are you really an administrator of the {0} team?"
@@ -5408,6 +5461,9 @@ msgstr "Prosím obnovte pripojenie na {0} pre vyhladávanie priateľ odtiaľ."
 msgid "Connect your {0} account to find your friends from there."
 msgstr "Pripojte Váš účet na {0} pre nájdenie priateľov."
 
+msgid "Connect"
+msgstr "Pripojiť sa"
+
 msgid "No friends found."
 msgstr "Neboli nájdený žiadny priatelia."
 
@@ -5463,9 +5519,6 @@ msgstr ""
 
 msgid "How the accounts will be after the transfer"
 msgstr "Aké budú účty po prevode"
-
-msgid "Abandoned:"
-msgstr "Zrušené:"
 
 msgid "Transfer the account"
 msgstr "Previesť účet"

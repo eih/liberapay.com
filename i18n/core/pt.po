@@ -16,9 +16,8 @@ msgstr "A tradução em {language} ainda está incompleta."
 msgid "Greetings,"
 msgstr "Olá,"
 
-#, fuzzy
 msgid "Something wrong? This email was sent automatically, but you can contact us by replying to it."
-msgstr "Algo errado? Responda a este email para obter ajuda."
+msgstr "Algo errado? Este email foi enviado automaticamente, mas você pode nos contatar respondendo-o."
 
 msgid "Change your email settings"
 msgstr "Alterar configurações de e-mail"
@@ -234,7 +233,7 @@ msgstr "Renovação de donativo Liberapay: método de pagamento inválido"
 msgid "You have a payment of {amount} scheduled for {payment_date} to renew your donation to {recipient}, but we can't process it because a valid payment instrument is missing."
 msgstr "Tem um pagamento de {amount} agendado para {payment_date} para renovar o donativo a {recipient}, mas não conseguimos processá‑lo porque falta um método de pagamento válido."
 
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "You have a payment of {amount} scheduled for {payment_date} to renew your donations to {recipients}, but we can't process it because a valid payment instrument is missing."
 msgstr "Tem um pagamento de {amount} agendado para {payment_date} para renovar os donativos a {recipients}, mas não conseguimos processá‑lo porque falta um método de pagamento válido."
 
@@ -249,11 +248,11 @@ msgstr "As datas de pagamento, quantias e destinatários são:"
 
 #, python-brace-format
 msgid "{date}: {money_amount} to {recipient}"
-msgstr ""
+msgstr "{date}: {money_amount} para {recipient}"
 
 #, python-brace-format
 msgid "{date}: {money_amount} split between {recipients}"
-msgstr ""
+msgstr "{date}: {money_amount} dividido entre {recipients}"
 
 msgid "Add a payment instrument"
 msgstr "Adicionar uma forma de pagamento"
@@ -398,13 +397,13 @@ msgstr "Pagamento por débito direto para sua carteira Liberapay realizado com s
 msgid "Your payment has failed"
 msgstr "Falha no pagamento"
 
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "The payment of {money_amount} initiated earlier today has failed."
-msgstr "Falha no pagamento de {money_amount} iniciado em {date} pelo Liberapay."
+msgstr "Falha no pagamento de {money_amount} iniciado hoje."
 
 #, python-brace-format
 msgid "The payment of {money_amount} initiated on {date} has failed."
-msgstr ""
+msgstr "Falha no pagamento de {money_amount} iniciado em {date}."
 
 #, python-brace-format
 msgid "The error message provided by the payment processor {provider} is:"
@@ -459,16 +458,20 @@ msgstr "Se você não autorizou o pagamento, nos avise para que reembolsemos."
 msgid "Once this payment has been processed it should appear on your bank statement as “{descriptor}”."
 msgstr "Assim que o pagamento for processado, ele aparecerá no seu extrato bancário como “{descriptor}”."
 
+#, python-brace-format
+msgid "Processing this kind of payment takes {timedelta} on average."
+msgstr "Processar este tipo de pagamento leva {timedelta} em média."
+
 msgid "Your payment has succeeded"
 msgstr "Seu pagamento foi realizado com sucesso"
 
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "The payment of {money_amount} initiated earlier today has succeeded."
-msgstr "Pagamento de {money_amount} iniciado em {date} pelo Liberapay realizado com sucesso."
+msgstr "O pagamento de {money_amount} iniciado hoje foi realizado com sucesso."
 
 #, python-brace-format
 msgid "The payment of {money_amount} initiated on {date} has succeeded."
-msgstr ""
+msgstr "O pagamento de {money_amount} iniciado em {date} foi realizado com sucesso."
 
 msgid "Thank you for this donation!"
 msgstr "Obrigado pela doação!"
@@ -489,71 +492,71 @@ msgid "Reject donations"
 msgstr "Rejeitar doações"
 
 msgid "Liberapay donation renewal: your upcoming payment has changed"
-msgstr ""
+msgstr "Renovação de doações de Liberapay: seu próprio pagamento mudou"
 
 msgid "Due to changes made by you or by someone you donate to, your payment schedule has been modified as follows:"
-msgstr ""
+msgstr "Devido às alterações feitas por você ou por alguém a quem você doa, seu agendamento de pagamento foi alterado da seguinte forma:"
 
 #, python-brace-format
 msgid "The payment of {money_amount} scheduled for {date} has been cancelled."
-msgstr ""
+msgstr "O pagamento de {money_amount} agendado para {date} foi cancelado."
 
 #, python-brace-format
 msgid "The manual payment scheduled for {date} has been cancelled."
-msgstr ""
+msgstr "O pagamento manual agendado para {date} foi cancelado."
 
 #, python-brace-format
 msgid "A new payment of {money_amount} has been scheduled for {date}."
-msgstr ""
+msgstr "Um novo pagamento de {money_amount} foi agendado para {date}."
 
 #, python-brace-format
 msgid "A new manual payment has been scheduled for {date}."
-msgstr ""
+msgstr "Um novo pagamento manual foi agendado para {date}."
 
 #, python-brace-format
 msgid "The payment of {money_amount} scheduled for {old_date} has been rescheduled to {new_date}."
-msgstr ""
+msgstr "O pagamento de {money_amount} agendado para {old_date} foi reagendado para {new_date}."
 
 #, python-brace-format
 msgid "The manual payment scheduled for {old_date} has been rescheduled to {new_date}."
-msgstr ""
+msgstr "O pagamento manual agendado para {old_date} foi reagendado para {new_date}."
 
 #, python-brace-format
 msgid "The amount of the payment scheduled for {date} has been changed from {old_money_amount} to {new_money_amount}."
-msgstr ""
+msgstr "A quantia do pagamento agendado para {date} foi alterada de {old_money_amount} para {new_money_amount}."
 
 #, python-brace-format
 msgid "The payment of {old_money_amount} scheduled for {old_date} has been replaced by a payment of {new_money_amount} on {new_date}."
-msgstr ""
+msgstr "O pagamento de {old_money_amount} agendado para {old_date} foi substituído por um pagamento de {new_money_amount} em {new_date}."
 
 #, python-brace-format
 msgid "The automatic payment of {old_money_amount} scheduled for {old_date} has been replaced by a manual payment on {new_date}."
-msgstr ""
+msgstr "O pagamento automático de {old_money_amount} agendado para {old_date} foi substituído por um pagamento manual em {new_date}."
 
 #, python-brace-format
 msgid "The manual payment scheduled for {old_date} has been replaced by an automatic payment of {new_money_amount} on {new_date}."
-msgstr ""
+msgstr "O pagamento manual agendado para {old_date} foi substituído por um pagamento automático de {new_money_amount} em {new_date}."
 
 #, python-brace-format
 msgid "You now have {n} scheduled payment:"
 msgid_plural "You now have {n} scheduled payments:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Você agora tem {n} pagamento agendado:"
+msgstr[1] "Você agora tem {n} pagamentos agendados:"
 
 #, python-brace-format
 msgid "{date}: automatic payment of {money_amount} to {recipient}"
-msgstr ""
+msgstr "{date}: pagamento automático de {money_amount} para {recipient}"
 
 #, python-brace-format
 msgid "{date}: automatic payment of {money_amount} split between {recipients}"
-msgstr ""
+msgstr "{date}: pagamento automático de {money_amount} dividido entre {recipients}"
 
 #, python-brace-format
 msgid "{date}: manual payment to {recipients}"
-msgstr ""
+msgstr "{date}: pagamento manual para {recipients}"
 
 msgid "Manage your payment schedule"
-msgstr ""
+msgstr "Gerenciar seu agendamento de pagamentos"
 
 #, python-brace-format
 msgid "{0} from {1} has joined Liberapay!"
@@ -577,11 +580,11 @@ msgstr "Em {date}, você prometeu doar {money_amount} para {user_name} se a pess
 
 #, python-brace-format
 msgid "We're pleased to inform you that {user_name} joined Liberapay {time_ago}, as {liberapay_username}."
-msgstr ""
+msgstr "Temos o prazer de informar que {user_name} se juntou a Liberapay {time_ago}, como {liberapay_username}."
 
 #, python-brace-format
 msgid "Consequently an automatic payment of {money_amount} has been scheduled for {date}, to turn your pledge into action."
-msgstr ""
+msgstr "Consequentemente, um pagamento automático de {money_amount} foi agendado para {date}, para concretizar sua promessa."
 
 #, python-brace-format
 msgid "If you wish to modify or cancel this upcoming payment, click on the following link: {link_start}manage my payment schedule{link_end}."
@@ -1340,6 +1343,9 @@ msgstr "({x_percent} traduzido)"
 msgid "Help us translate Liberapay"
 msgstr "Ajude-nos a traduzir Liberapay"
 
+msgid "Your account"
+msgstr ""
+
 msgid "Profile"
 msgstr "Perfil"
 
@@ -1433,9 +1439,8 @@ msgstr[1] "{0} recebe {1} por semana de {n} doadores."
 msgid "Goal: {0}"
 msgstr "Meta: {0}"
 
-#, python-brace-format
-msgid "Donating ({amount})"
-msgstr "Doando ({amount})"
+msgid "Modify your donation"
+msgstr "Alterar sua doação"
 
 msgid "Pledge"
 msgstr "Prometer"
@@ -1463,6 +1468,12 @@ msgstr "Senha"
 msgid "If you've {bold}lost your password{bold_end}, or if your account doesn't have a password at all, then leave the password field empty. We'll send you a login link via email."
 msgstr "{bold}Se você perdeu a senha{bold_end} ou se a sua conta não tem uma, deixe o campo de senha em branco. Enviaremos por e-mail um link para entrar."
 
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Default avatar"
+msgstr ""
+
 msgid "Find great people to donate to"
 msgstr "Encontre pessoas legais para doar"
 
@@ -1474,9 +1485,6 @@ msgstr "Desvincular"
 
 msgid "This is not supported yet"
 msgstr "Não suportado ainda"
-
-msgid "Connect"
-msgstr "Vincular"
 
 msgid "username"
 msgstr "nome de usuário"
@@ -1550,6 +1558,10 @@ msgstr "Nome da organização"
 msgid "Headquarters Address"
 msgstr "Endereço da sede"
 
+#, python-brace-format
+msgid "Show the {submenu_label} submenu"
+msgstr ""
+
 msgid "Introduction"
 msgstr "Introdução"
 
@@ -1601,9 +1613,6 @@ msgstr "Comunidades"
 
 msgid "Name"
 msgstr "Nome"
-
-msgid "Avatar"
-msgstr "Avatar"
 
 msgid "Currencies"
 msgstr "Moedas"
@@ -1695,9 +1704,6 @@ msgstr "por semana"
 
 msgid "Modify your pledge"
 msgstr "Alterar sua promessa"
-
-msgid "Modify your donation"
-msgstr "Alterar sua doação"
 
 msgid "Pledges"
 msgstr "Promessas"
@@ -2118,6 +2124,15 @@ msgstr "Stripe converte tudo para sua moeda principal automaticamente, mas o Pay
 msgid "Connecting the accounts you own on other platforms makes your Liberapay profile easier to find, and helps to demonstrate that you are who you claim to be."
 msgstr "Vincule contas que você possui em outras plataformas, isso torna o seu perfil Liberapay mais fácil de encontrar e ainda ajuda os outros a te identificarem."
 
+#, python-brace-format
+msgid "You currently have {n} connected account:"
+msgid_plural "You currently have {n} connected accounts:"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Connect an account"
+msgstr ""
+
 msgid "I'm grateful for gifts, but don't have a specific funding goal."
 msgstr "Eu sou grato pelas doações, mas não tenho uma meta de financiamento."
 
@@ -2240,6 +2255,13 @@ msgstr "Ver equipes"
 msgid "About teams"
 msgstr "Sobre as equipes"
 
+#, python-brace-format
+msgid ""
+"When you modify your username, the web address of your profile changes accordingly. A redirect from the old URL to the new one is put in place, but any user can remove it by claiming your old username, so you should update all the links to your profile that you've placed on other websites, unless those links contain your immutable account ID ({account_id}) instead of your username.\n"
+"\n"
+"Are you sure you want to change your username?"
+msgstr ""
+
 msgid "Username"
 msgstr "Nome de usuário"
 
@@ -2252,9 +2274,6 @@ msgstr "Tamanho máximo é {0}."
 
 msgid "Allowed characters: latin alphanumerics, dots (.), dashes (-), and underscores (_)."
 msgstr "Caracteres permitidos: alfanuméricos latinos, pontos (.), hífens ( - ) e underline (_)."
-
-msgid "Have you linked to your Liberapay profile from other websites? Be sure to update those links!"
-msgstr "Você divulgou seu Liberapay em outros lugares? Lembre-se de manter o link atualizado!"
 
 msgid "Name (optional)"
 msgstr "Nome (opcional)"
@@ -2506,11 +2525,17 @@ msgstr "Cartão"
 msgid "Currently unavailable"
 msgstr "Indisponível no momento"
 
+msgid "Pay by card"
+msgstr ""
+
 msgid "Euro donations only"
 msgstr "Somente doações em Euros"
 
 msgid "Euro bank accounts only"
 msgstr "Somente contas bancárias Euro"
+
+msgid "Pay by direct debit"
+msgstr ""
 
 #, python-brace-format
 msgid "Doesn't support the {currency}"
@@ -2521,6 +2546,9 @@ msgstr ""
 
 msgid "Not anonymous"
 msgstr "Não anônimo"
+
+msgid "Pay with PayPal"
+msgstr ""
 
 #, python-brace-format
 msgid "Your donation to {team} cannot be processed because it would be sending money to yourself."
@@ -2755,6 +2783,19 @@ msgstr "Sua parte agora é {0}."
 #, python-brace-format
 msgid "{username}'s profile"
 msgstr "Perfil de {username}"
+
+#, python-brace-format
+msgid "<unused singular (hash=8485a1bf550d6d1f52f5274e15580f6e)>"
+msgid_plural "This profile is available in {n} languages"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Show the list of languages"
+msgstr ""
+
+#, python-brace-format
+msgid "This profile is only available in {language}"
+msgstr ""
 
 msgid "Edit"
 msgstr "Editar"
@@ -3367,6 +3408,12 @@ msgstr "Não tem quaisquer formas de pagamento válidos."
 
 msgid "Add a payment instrument:"
 msgstr "Adicionar uma forma de pagamento:"
+
+msgid "Add a card"
+msgstr ""
+
+msgid "Add a bank account"
+msgstr ""
 
 msgid "You still have money in this Liberapay account, please choose a disbursement method below or contact support."
 msgstr "Você ainda tem fundos na conta Liberapay, escolha uma forma de reembolso abaixo ou entre em contato com o suporte."
@@ -4022,17 +4069,20 @@ msgstr "Placas de {link_open}Shields.io{link_close}"
 msgid "Use these code snippets to add a badge to your website or README:"
 msgstr "Use estes snippets de código para adicionar uma placa ao seu site ou README:"
 
-msgid "To contact us privately:"
-msgstr "Para entrar em contato em particular:"
+msgid "To contact the Liberapay team privately:"
+msgstr ""
 
 msgid "Send us an email"
 msgstr "Envie-nos um e-mail"
 
-msgid "We are currently able to answer in English and French."
-msgstr "Somos capazes de responder em inglês e francês."
+msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
+msgstr ""
 
 msgid "We currently don't have a phone number."
 msgstr "No momento não temos um número de telefone."
+
+msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
+msgstr ""
 
 msgid "To report a problem or make a suggestion in English:"
 msgstr "Para relatar um problema ou fazer uma sugestão em inglês:"
@@ -4333,6 +4383,9 @@ msgid "We do our best to protect everyone's privacy: we do not attempt to track 
 msgstr "Fazemos o nosso melhor para proteger a privacidade de todos: Não tentamos rastrear as pessoas que visitam o nosso site, coletamos apenas dados pessoais que realmente precisamos, e não a vendemos para ninguém."
 
 msgid "Cookies"
+msgstr ""
+
+msgid "A cookie is a piece of information sent by a website to your browser, stored on your machine, and resent by your browser to that same website in every subsequent request."
 msgstr ""
 
 msgid "The liberapay.com website only sets technical cookies which are required to authenticate the user or to perform a specific operation. These cookies are restricted to same-site requests, so we don't know who visits websites that contain Liberapay widgets."
@@ -5187,13 +5240,10 @@ msgstr "O e-mail {0} não pode ser vinculado à sua conta porque já esta vincul
 
 #, python-brace-format
 msgid ""
-"We were unable to determine if you are a member of the {0} team on {1}.\n"
+"We were unable to determine if you are a member of the {team_name} team on {platform_name}.\n"
 "\n"
-"Please {2}check that you gave us the necessary permissions{3}."
+"Please {link_start}make sure your membership of the team is public{link_end}."
 msgstr ""
-"Não foi possível determinar se você é um membro {0}da equipe{1}.\n"
-"\n"
-"Verifique {2}se você deu as permissões necessárias{3}."
 
 #, python-brace-format
 msgid "Are you really an administrator of the {0} team?"
@@ -5333,6 +5383,9 @@ msgstr "Atualize o vínculo da sua conta {0} para encontrar os seus amigos de l�
 msgid "Connect your {0} account to find your friends from there."
 msgstr "Vincule sua conta {0} para encontrar os seus amigos de lá."
 
+msgid "Connect"
+msgstr "Vincular"
+
 msgid "No friends found."
 msgstr "Nenhum amigo encontrado."
 
@@ -5387,9 +5440,6 @@ msgstr "Sem contas vinculadas."
 
 msgid "How the accounts will be after the transfer"
 msgstr "Como as contas irão ficar após a transferência"
-
-msgid "Abandoned:"
-msgstr "Abandonado:"
 
 msgid "Transfer the account"
 msgstr "Transferir conta"

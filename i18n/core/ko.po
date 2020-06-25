@@ -453,6 +453,10 @@ msgstr "혹시 이 지불을 승인하지 않았다면 알려 주십시오. 환�
 msgid "Once this payment has been processed it should appear on your bank statement as “{descriptor}”."
 msgstr "결제가 처리되면 은행 계좌에 \"{descriptor}\" 라는 내용으로 등장할 것입니다."
 
+#, python-brace-format
+msgid "Processing this kind of payment takes {timedelta} on average."
+msgstr ""
+
 msgid "Your payment has succeeded"
 msgstr "지불이 성공적으로 이루어졌습니다"
 
@@ -1327,6 +1331,9 @@ msgstr "({x_percent} 번역됨)"
 msgid "Help us translate Liberapay"
 msgstr "Liberapay 번역을 도와주세요"
 
+msgid "Your account"
+msgstr ""
+
 msgid "Profile"
 msgstr "프로필"
 
@@ -1418,9 +1425,8 @@ msgstr[0] "{0} 님은 {n} 명으로부터 매주 {1} 만큼을 받고 있습니�
 msgid "Goal: {0}"
 msgstr "목표: {0}"
 
-#, python-brace-format
-msgid "Donating ({amount})"
-msgstr "기부 중 ({amount})"
+msgid "Modify your donation"
+msgstr "기부 수정"
 
 msgid "Pledge"
 msgstr "공약"
@@ -1448,6 +1454,12 @@ msgstr "비밀번호 (선택)"
 msgid "If you've {bold}lost your password{bold_end}, or if your account doesn't have a password at all, then leave the password field empty. We'll send you a login link via email."
 msgstr "계정에 비밀번호가 없거나 {bold}비밀번호를 잃어버린 경우{bold_end}, 비밀번호 칸을 빈칸으로 두세요. 로그인 링크를 이메일로 보내 드립니다."
 
+msgid "Avatar"
+msgstr "아바타"
+
+msgid "Default avatar"
+msgstr ""
+
 msgid "Find great people to donate to"
 msgstr "기부할 좋은 사람들을 찾아보세요"
 
@@ -1459,9 +1471,6 @@ msgstr "끊기"
 
 msgid "This is not supported yet"
 msgstr "아직 지원되지 않습니다"
-
-msgid "Connect"
-msgstr "연결하기"
 
 msgid "username"
 msgstr "사용자 이름"
@@ -1535,6 +1544,10 @@ msgstr "조직 이름"
 msgid "Headquarters Address"
 msgstr "본사 주소"
 
+#, python-brace-format
+msgid "Show the {submenu_label} submenu"
+msgstr ""
+
 msgid "Introduction"
 msgstr "소개"
 
@@ -1585,9 +1598,6 @@ msgstr "커뮤니티"
 
 msgid "Name"
 msgstr "이름"
-
-msgid "Avatar"
-msgstr "아바타"
 
 msgid "Currencies"
 msgstr "화폐"
@@ -1679,9 +1689,6 @@ msgstr "매주"
 
 msgid "Modify your pledge"
 msgstr "공약 수정"
-
-msgid "Modify your donation"
-msgstr "기부 수정"
 
 msgid "Pledges"
 msgstr "공약"
@@ -2099,6 +2106,14 @@ msgstr "Stripe는 외환을 자동적으로 주 화폐로 환전하지만, PayPa
 msgid "Connecting the accounts you own on other platforms makes your Liberapay profile easier to find, and helps to demonstrate that you are who you claim to be."
 msgstr "다른 플랫폼에서 가지고 있는 계정을 연결하게 되면 다른 사람이 당신을 찾기 쉽게 되며, 당신이 누구인지 확인하기 쉽게 해 줍니다."
 
+#, python-brace-format
+msgid "You currently have {n} connected account:"
+msgid_plural "You currently have {n} connected accounts:"
+msgstr[0] ""
+
+msgid "Connect an account"
+msgstr ""
+
 msgid "I'm grateful for gifts, but don't have a specific funding goal."
 msgstr "기부는 감사합니다만, 구체적인 모금 목표는 딱히 없습니다."
 
@@ -2220,6 +2235,13 @@ msgstr "팀 둘러보기"
 msgid "About teams"
 msgstr "팀 소개"
 
+#, python-brace-format
+msgid ""
+"When you modify your username, the web address of your profile changes accordingly. A redirect from the old URL to the new one is put in place, but any user can remove it by claiming your old username, so you should update all the links to your profile that you've placed on other websites, unless those links contain your immutable account ID ({account_id}) instead of your username.\n"
+"\n"
+"Are you sure you want to change your username?"
+msgstr ""
+
 msgid "Username"
 msgstr "사용자 이름"
 
@@ -2232,9 +2254,6 @@ msgstr "최댓값은 {0}입니다."
 
 msgid "Allowed characters: latin alphanumerics, dots (.), dashes (-), and underscores (_)."
 msgstr "허용되는 단어: 라틴 알파벳과 숫자, 온점(.), 대시 (-), 언더바(_)."
-
-msgid "Have you linked to your Liberapay profile from other websites? Be sure to update those links!"
-msgstr "혹시 다른 사이트에서 Liberapay 프로필 페이지를 링크하신 적이 있으신가요? 그 링크를 업데이트해주세요!"
 
 msgid "Name (optional)"
 msgstr "이름 (선택)"
@@ -2483,11 +2502,17 @@ msgstr "카드"
 msgid "Currently unavailable"
 msgstr "현재 사용 불가능"
 
+msgid "Pay by card"
+msgstr ""
+
 msgid "Euro donations only"
 msgstr "유로 기부금 전용"
 
 msgid "Euro bank accounts only"
 msgstr "유럽 계좌 전용"
+
+msgid "Pay by direct debit"
+msgstr ""
 
 #, python-brace-format
 msgid "Doesn't support the {currency}"
@@ -2498,6 +2523,9 @@ msgstr "자동 갱신을 지원하지 않음"
 
 msgid "Not anonymous"
 msgstr "익명이 아님"
+
+msgid "Pay with PayPal"
+msgstr ""
 
 #, python-brace-format
 msgid "Your donation to {team} cannot be processed because it would be sending money to yourself."
@@ -2729,6 +2757,18 @@ msgstr "지분은 {0} 입니다."
 #, python-brace-format
 msgid "{username}'s profile"
 msgstr "{username} 님의 프로필"
+
+#, python-brace-format
+msgid "<unused singular (hash=8485a1bf550d6d1f52f5274e15580f6e)>"
+msgid_plural "This profile is available in {n} languages"
+msgstr[0] ""
+
+msgid "Show the list of languages"
+msgstr ""
+
+#, python-brace-format
+msgid "This profile is only available in {language}"
+msgstr ""
 
 msgid "Edit"
 msgstr "고치기"
@@ -3335,6 +3375,12 @@ msgid "You don't have any valid payment instrument."
 msgstr ""
 
 msgid "Add a payment instrument:"
+msgstr ""
+
+msgid "Add a card"
+msgstr ""
+
+msgid "Add a bank account"
 msgstr ""
 
 msgid "You still have money in this Liberapay account, please choose a disbursement method below or contact support."
@@ -3982,17 +4028,20 @@ msgstr "{link_open}shields.io{link_close} 제공 뱃지"
 msgid "Use these code snippets to add a badge to your website or README:"
 msgstr "웹사이트나 README에 다음 코드 스니핏을 사용해 뱃지를 추가하세요:"
 
-msgid "To contact us privately:"
-msgstr "Liberapay에 연락하려면:"
+msgid "To contact the Liberapay team privately:"
+msgstr ""
 
 msgid "Send us an email"
 msgstr "이메일을 보내세요"
 
-msgid "We are currently able to answer in English and French."
-msgstr "현재는 영어 및 프랑스어로만 질의에 응답할 수 있습니다."
+msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
+msgstr ""
 
 msgid "We currently don't have a phone number."
 msgstr "현재는 전화번호가 없습니다."
+
+msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
+msgstr ""
 
 msgid "To report a problem or make a suggestion in English:"
 msgstr "영어로 문제를 보고하거나 제안할 사항이 있다면:"
@@ -4289,6 +4338,9 @@ msgid "We do our best to protect everyone's privacy: we do not attempt to track 
 msgstr "저희는 모두의 개인정보를 보호하기 위해 최선을 다합니다: 저희 웹사이트를 방문하는 사용자를 추적하지 않으며, 정말 필요한 정보만을 수집하고, 이 정보를 팔지 않습니다."
 
 msgid "Cookies"
+msgstr ""
+
+msgid "A cookie is a piece of information sent by a website to your browser, stored on your machine, and resent by your browser to that same website in every subsequent request."
 msgstr ""
 
 msgid "The liberapay.com website only sets technical cookies which are required to authenticate the user or to perform a specific operation. These cookies are restricted to same-site requests, so we don't know who visits websites that contain Liberapay widgets."
@@ -5111,9 +5163,9 @@ msgstr ""
 
 #, python-brace-format
 msgid ""
-"We were unable to determine if you are a member of the {0} team on {1}.\n"
+"We were unable to determine if you are a member of the {team_name} team on {platform_name}.\n"
 "\n"
-"Please {2}check that you gave us the necessary permissions{3}."
+"Please {link_start}make sure your membership of the team is public{link_end}."
 msgstr ""
 
 #, python-brace-format
@@ -5252,6 +5304,9 @@ msgstr ""
 msgid "Connect your {0} account to find your friends from there."
 msgstr ""
 
+msgid "Connect"
+msgstr "연결하기"
+
 msgid "No friends found."
 msgstr ""
 
@@ -5304,9 +5359,6 @@ msgid "No connected accounts."
 msgstr ""
 
 msgid "How the accounts will be after the transfer"
-msgstr ""
-
-msgid "Abandoned:"
 msgstr ""
 
 msgid "Transfer the account"

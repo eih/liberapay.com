@@ -439,6 +439,10 @@ msgstr ""
 msgid "Once this payment has been processed it should appear on your bank statement as “{descriptor}”."
 msgstr ""
 
+#, python-brace-format
+msgid "Processing this kind of payment takes {timedelta} on average."
+msgstr ""
+
 msgid "Your payment has succeeded"
 msgstr ""
 
@@ -1320,6 +1324,9 @@ msgstr ""
 msgid "Help us translate Liberapay"
 msgstr ""
 
+msgid "Your account"
+msgstr ""
+
 msgid "Profile"
 msgstr ""
 
@@ -1413,8 +1420,7 @@ msgstr[1] ""
 msgid "Goal: {0}"
 msgstr ""
 
-#, python-brace-format
-msgid "Donating ({amount})"
+msgid "Modify your donation"
 msgstr ""
 
 msgid "Pledge"
@@ -1443,6 +1449,12 @@ msgstr ""
 msgid "If you've {bold}lost your password{bold_end}, or if your account doesn't have a password at all, then leave the password field empty. We'll send you a login link via email."
 msgstr ""
 
+msgid "Avatar"
+msgstr ""
+
+msgid "Default avatar"
+msgstr ""
+
 msgid "Find great people to donate to"
 msgstr ""
 
@@ -1453,9 +1465,6 @@ msgid "Disconnect"
 msgstr ""
 
 msgid "This is not supported yet"
-msgstr ""
-
-msgid "Connect"
 msgstr ""
 
 msgid "username"
@@ -1530,6 +1539,10 @@ msgstr ""
 msgid "Headquarters Address"
 msgstr ""
 
+#, python-brace-format
+msgid "Show the {submenu_label} submenu"
+msgstr ""
+
 msgid "Introduction"
 msgstr ""
 
@@ -1579,9 +1592,6 @@ msgid "Communities"
 msgstr ""
 
 msgid "Name"
-msgstr ""
-
-msgid "Avatar"
 msgstr ""
 
 msgid "Currencies"
@@ -1673,9 +1683,6 @@ msgid "per week"
 msgstr ""
 
 msgid "Modify your pledge"
-msgstr ""
-
-msgid "Modify your donation"
 msgstr ""
 
 msgid "Pledges"
@@ -2097,6 +2104,15 @@ msgstr ""
 msgid "Connecting the accounts you own on other platforms makes your Liberapay profile easier to find, and helps to demonstrate that you are who you claim to be."
 msgstr ""
 
+#, python-brace-format
+msgid "You currently have {n} connected account:"
+msgid_plural "You currently have {n} connected accounts:"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Connect an account"
+msgstr ""
+
 msgid "I'm grateful for gifts, but don't have a specific funding goal."
 msgstr ""
 
@@ -2219,6 +2235,13 @@ msgstr ""
 msgid "About teams"
 msgstr ""
 
+#, python-brace-format
+msgid ""
+"When you modify your username, the web address of your profile changes accordingly. A redirect from the old URL to the new one is put in place, but any user can remove it by claiming your old username, so you should update all the links to your profile that you've placed on other websites, unless those links contain your immutable account ID ({account_id}) instead of your username.\n"
+"\n"
+"Are you sure you want to change your username?"
+msgstr ""
+
 msgid "Username"
 msgstr ""
 
@@ -2230,9 +2253,6 @@ msgid "Maximum length is {0}."
 msgstr ""
 
 msgid "Allowed characters: latin alphanumerics, dots (.), dashes (-), and underscores (_)."
-msgstr ""
-
-msgid "Have you linked to your Liberapay profile from other websites? Be sure to update those links!"
 msgstr ""
 
 msgid "Name (optional)"
@@ -2485,10 +2505,16 @@ msgstr ""
 msgid "Currently unavailable"
 msgstr ""
 
+msgid "Pay by card"
+msgstr ""
+
 msgid "Euro donations only"
 msgstr ""
 
 msgid "Euro bank accounts only"
+msgstr ""
+
+msgid "Pay by direct debit"
 msgstr ""
 
 #, python-brace-format
@@ -2499,6 +2525,9 @@ msgid "Doesn't support automatic renewal"
 msgstr ""
 
 msgid "Not anonymous"
+msgstr ""
+
+msgid "Pay with PayPal"
 msgstr ""
 
 #, python-brace-format
@@ -2733,6 +2762,19 @@ msgstr ""
 
 #, python-brace-format
 msgid "{username}'s profile"
+msgstr ""
+
+#, python-brace-format
+msgid "<unused singular (hash=8485a1bf550d6d1f52f5274e15580f6e)>"
+msgid_plural "This profile is available in {n} languages"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Show the list of languages"
+msgstr ""
+
+#, python-brace-format
+msgid "This profile is only available in {language}"
 msgstr ""
 
 msgid "Edit"
@@ -3345,6 +3387,12 @@ msgid "You don't have any valid payment instrument."
 msgstr ""
 
 msgid "Add a payment instrument:"
+msgstr ""
+
+msgid "Add a card"
+msgstr ""
+
+msgid "Add a bank account"
 msgstr ""
 
 msgid "You still have money in this Liberapay account, please choose a disbursement method below or contact support."
@@ -4001,16 +4049,19 @@ msgstr ""
 msgid "Use these code snippets to add a badge to your website or README:"
 msgstr ""
 
-msgid "To contact us privately:"
+msgid "To contact the Liberapay team privately:"
 msgstr ""
 
 msgid "Send us an email"
 msgstr ""
 
-msgid "We are currently able to answer in English and French."
+msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
 msgstr ""
 
 msgid "We currently don't have a phone number."
+msgstr ""
+
+msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
 msgstr ""
 
 msgid "To report a problem or make a suggestion in English:"
@@ -4311,6 +4362,9 @@ msgid "We do our best to protect everyone's privacy: we do not attempt to track 
 msgstr ""
 
 msgid "Cookies"
+msgstr ""
+
+msgid "A cookie is a piece of information sent by a website to your browser, stored on your machine, and resent by your browser to that same website in every subsequent request."
 msgstr ""
 
 msgid "The liberapay.com website only sets technical cookies which are required to authenticate the user or to perform a specific operation. These cookies are restricted to same-site requests, so we don't know who visits websites that contain Liberapay widgets."
@@ -5161,9 +5215,9 @@ msgstr ""
 
 #, python-brace-format
 msgid ""
-"We were unable to determine if you are a member of the {0} team on {1}.\n"
+"We were unable to determine if you are a member of the {team_name} team on {platform_name}.\n"
 "\n"
-"Please {2}check that you gave us the necessary permissions{3}."
+"Please {link_start}make sure your membership of the team is public{link_end}."
 msgstr ""
 
 #, python-brace-format
@@ -5304,6 +5358,9 @@ msgstr ""
 msgid "Connect your {0} account to find your friends from there."
 msgstr ""
 
+msgid "Connect"
+msgstr ""
+
 msgid "No friends found."
 msgstr ""
 
@@ -5357,9 +5414,6 @@ msgid "No connected accounts."
 msgstr ""
 
 msgid "How the accounts will be after the transfer"
-msgstr ""
-
-msgid "Abandoned:"
 msgstr ""
 
 msgid "Transfer the account"

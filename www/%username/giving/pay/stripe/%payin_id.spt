@@ -150,6 +150,8 @@ elif payin_id:
     try:
         if payin.status == 'pre':
             payin = charge(website.db, payin, payer)
+            if payin.id != int(payin_id):
+                response.redirect(payer.path('giving/pay/stripe/%i' % payin.id))
         elif payin.status == 'awaiting_payer_action':
             payin = settle_payin(website.db, payin)
     except NextAction as act:
@@ -245,6 +247,10 @@ title = _("Funding your donations")
         <p><a class="btn btn-primary btn-lg" href="{{ payer.path('giving/pay') }}?retry={{ payin.id }}">{{ _("Try again") }}</a></p>
     % elif status == 'pending'
         <div class="alert alert-info">{{ _("The payment has been initiated.") }}</div>
+        <p>{{ _(
+            "Processing this kind of payment takes {timedelta} on average.",
+            timedelta=locale.Age(constants.PAYIN_SETTLEMENT_DELAYS['stripe-sdd'], format_args=dict(threshold=0.9))
+        ) }}</p>
         <p>{{ _(
             "A receipt will be available once the payment has been successfully processed. You can see all your payments and receipts in {link_start}your account's ledger{link_end}.",
             link_start='<a href="%s">'|safe % payer.path('ledger/'),

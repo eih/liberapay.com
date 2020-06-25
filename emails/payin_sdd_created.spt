@@ -28,3 +28,10 @@
     descriptor=statement_descriptor
 ) }}</p>
 % endif
+
+% if average_settlement_seconds
+<p>{{ _(
+    "Processing this kind of payment takes {timedelta} on average.",
+    timedelta=locale.Age(seconds=average_settlement_seconds, format_args=dict(threshold=0.9))
+) }}</p>
+% endif

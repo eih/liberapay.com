@@ -571,7 +571,7 @@ class TestPayinsStripe(Harness):
             country='CH',
             type='custom',
         )
-        cls.offset = 1400
+        cls.offset = 1600
 
     def setUp(self):
         super().setUp()
@@ -962,6 +962,106 @@ class TestPayinsStripe(Harness):
         r = self.client.GET(expected_uri, auth_as=self.donor)
         assert r.code == 200, r.text
 
+    def test_06_payin_stripe_sdd_to_team(self):
+        self.db.run("ALTER SEQUENCE payins_id_seq RESTART WITH %s", (self.offset,))
+        self.db.run("ALTER SEQUENCE payin_transfers_id_seq RESTART WITH %s", (self.offset,))
+        self.add_payment_account(self.creator_1, 'stripe', id='acct_1Gv6gnIi3iiNpKFF', country='MY', currency='MYR')
+        self.add_payment_account(self.creator_2, 'stripe')
+        self.add_payment_account(self.creator_3, 'paypal')
+        team = self.make_participant('team', kind='group')
+        team.set_take_for(self.creator_1, EUR('10.00'), team)
+        team.set_take_for(self.creator_2, EUR('1.00'), team)
+        team.set_take_for(self.creator_3, EUR('20.00'), team)
+        tip = self.donor.set_tip_to(team, EUR('12.00'))
+
+        # 1st request: test getting the payment pages
+        expected_uri = '/donor/giving/pay/stripe/?beneficiary=%i&method=sdd' % team.id
+        r = self.client.GET('/donor/giving/pay/', auth_as=self.donor)
+        assert r.code == 200, r.text
+        assert str(Markup.escape(expected_uri)) in r.text
+        r = self.client.GET(expected_uri, auth_as=self.donor)
+        assert r.code == 200, r.text
+
+        # 2nd request: prepare the payment
+        sepa_direct_debit_token = stripe.Token.create(bank_account=dict(
+            country='FR',
+            currency='EUR',
+            account_number='FR1420041010050500013M02606',
+            account_holder_name='Jane Doe',
+        ))
+        form_data = {
+            'amount': '100.00',
+            'currency': 'EUR',
+            'keep': 'true',
+            'tips': str(tip['id']),
+            'token': sepa_direct_debit_token.id,
+        }
+        r = self.client.PxST('/donor/giving/pay/stripe', form_data, auth_as=self.donor)
+        assert r.code == 200, r.text
+        assert r.headers[b'Refresh'] == b'0;url=/donor/giving/pay/stripe/%i' % self.offset
+        payin = self.db.one("SELECT * FROM payins")
+        assert payin.status == 'pre'
+        assert payin.amount == EUR('100.00')
+        payin_transfers = self.db.all("SELECT * FROM payin_transfers ORDER BY id")
+        assert len(payin_transfers) == 1
+        pt = payin_transfers[0]
+        assert pt.status == 'pre'
+        assert pt.amount == EUR('100.00')
+        assert pt.recipient == self.creator_1.id
+
+        # 3rd request: execute the payment
+        r = self.client.GxT('/donor/giving/pay/stripe/%i' % self.offset, auth_as=self.donor)
+        assert r.code == 302, r.text
+        assert r.headers[b'Location'] == b'/donor/giving/pay/stripe/%i' % (self.offset + 1)
+        r = self.client.GET('/donor/giving/pay/stripe/%i' % (self.offset + 1), auth_as=self.donor)
+        assert r.code == 200, r.text
+        payin1, payin2 = self.db.all("SELECT * FROM payins ORDER BY id")
+        assert payin1.status == 'failed'
+        assert payin1.error.startswith("For 'sepa_debit' payments, we currently require ")
+        assert payin2.status == 'pending'
+        assert payin2.amount_settled is None
+        assert payin2.fee is None
+        payin_transfers = self.db.all("SELECT * FROM payin_transfers ORDER BY id")
+        assert len(payin_transfers) == 2
+        pt1, pt2 = payin_transfers
+        assert pt1.status == 'failed'
+        assert pt1.amount == EUR('100.00')
+        assert pt1.remote_id is None
+        assert pt2.status == 'pending'
+        assert pt2.amount == EUR('100.00')
+        assert pt2.remote_id is None
+        assert pt2.recipient == self.creator_2.id
+
+        # 4th request: test getting the payment page again
+        r = self.client.GET(expected_uri, auth_as=self.donor)
+        assert r.code == 200, r.text
+
+        # 5th request: test getting the receipt before the payment settles
+        r = self.client.GxT('/donor/receipts/direct/%i' % payin.id, auth_as=self.donor)
+        assert r.code == 404, r.text
+
+        # Settle
+        charge = stripe.Charge.retrieve(payin2.remote_id)
+        assert charge.status == 'succeeded'
+        assert charge.balance_transaction
+        payin = settle_charge_and_transfers(self.db, payin2, charge)
+        assert payin.status == 'succeeded'
+        assert payin.amount_settled
+        assert payin.fee
+        payin_transfers = self.db.all("SELECT * FROM payin_transfers ORDER BY id")
+        assert len(payin_transfers) == 2
+        pt1, pt2 = payin_transfers
+        assert pt1.status == 'failed'
+        assert pt1.amount == EUR('100.00')
+        assert pt1.remote_id is None
+        assert pt2.status == 'succeeded'
+        assert pt2.amount == EUR('98.95')
+
+        # 6th request: test getting the receipt after the payment is settled
+        r = self.client.GET('/donor/receipts/direct/%i' % payin.id, auth_as=self.donor)
+        assert r.code == 200, r.text
+        assert "2606" in r.text
+
 
 class TestRefundsStripe(Harness):
 
@@ -990,8 +1090,9 @@ class TestRefundsStripe(Harness):
         payin, pt = self.make_payin_and_transfer(
             route, bob, EUR(400), fee=EUR('3.45'),
             remote_id='py_XXXXXXXXXXXXXXXXXXXXXXXX',
-            pt_remote_id='tr_XXXXXXXXXXXXXXXXXXXXXXXX',
+            pt_extra=dict(remote_id='tr_XXXXXXXXXXXXXXXXXXXXXXXX'),
         )
+        assert pt.amount == EUR('396.55')
         params = dict(payin_id=payin.id, recent_timestamp=(utcnow() - EPOCH).total_seconds())
         construct_event.return_value = stripe.Event.construct_from(
             json.loads('''{
@@ -1674,13 +1775,14 @@ class TestRefundsStripe(Harness):
 
     @patch('stripe.BalanceTransaction.retrieve')
     @patch('stripe.Charge.retrieve')
+    @patch('stripe.Source.detach')
     @patch('stripe.Source.retrieve')
     @patch('stripe.Transfer.create_reversal')
     @patch('stripe.Transfer.retrieve')
     @patch('stripe.Webhook.construct_event')
     def test_charge_dispute(
         self, construct_event, tr_retrieve, create_reversal, source_retrieve,
-        ch_retrieve, bt_retrieve,
+        source_detach, ch_retrieve, bt_retrieve,
     ):
         alice = self.make_participant('alice')
         bob = self.make_participant('bob')
@@ -1939,6 +2041,55 @@ class TestRefundsStripe(Harness):
             }''' % params),
             stripe.api_key
         )
+        chargeable_source = stripe.Source.construct_from(
+            json.loads('''{
+              "id": "src_XXXXXXXXXXXXXXXXXXXXXXXX",
+              "object": "source",
+              "amount": null,
+              "created": 1563594673,
+              "currency": "eur",
+              "customer": "cus_XXXXXXXXXXXXXX",
+              "flow": "none",
+              "livemode": false,
+              "owner": {
+                "address": {
+                  "city": null,
+                  "country": "FR",
+                  "line1": null,
+                  "line2": null,
+                  "postal_code": null,
+                  "state": null
+                },
+                "email": "xxxxxxxxx@outlook.fr",
+                "name": "Jane Doe",
+                "phone": null,
+                "verified_address": null,
+                "verified_email": null,
+                "verified_name": null,
+                "verified_phone": null
+              },
+              "sepa_debit": {
+                "last4": "0000",
+                "bank_code": "12345",
+                "branch_code": "10000",
+                "fingerprint": "XXXXXXXXXXXXXXXX",
+                "country": "FR",
+                "mandate_reference": "XXXXXXXXXXXXXXXX",
+                "mandate_url": "https://hooks.stripe.com/adapter/sepa_debit/file/..."
+              },
+              "statement_descriptor": null,
+              "status": "consumed",
+              "type": "sepa_debit",
+              "usage": "reusable"
+            }'''),
+            stripe.api_key
+        )
+        source_retrieve.return_value = chargeable_source
+        consumed_source = stripe.Source.construct_from(
+            dict(chargeable_source, status='consumed'),
+            stripe.api_key
+        )
+        source_detach.return_value = consumed_source
         r = self.client.POST('/callbacks/stripe', {}, HTTP_STRIPE_SIGNATURE='fake')
         assert r.code == 200
         assert r.text == 'OK'
@@ -2015,49 +2166,7 @@ class TestRefundsStripe(Harness):
         notifs = alice.get_notifs()
         assert len(notifs) == 0
         # Check that the receipt for this payment has been voided
-        source_retrieve.return_value = stripe.Source.construct_from(
-            json.loads('''{
-              "id": "src_XXXXXXXXXXXXXXXXXXXXXXXX",
-              "object": "source",
-              "amount": null,
-              "created": 1563594673,
-              "currency": "eur",
-              "customer": "cus_XXXXXXXXXXXXXX",
-              "flow": "none",
-              "livemode": false,
-              "owner": {
-                "address": {
-                  "city": null,
-                  "country": "FR",
-                  "line1": null,
-                  "line2": null,
-                  "postal_code": null,
-                  "state": null
-                },
-                "email": "xxxxxxxxx@outlook.fr",
-                "name": "Jane Doe",
-                "phone": null,
-                "verified_address": null,
-                "verified_email": null,
-                "verified_name": null,
-                "verified_phone": null
-              },
-              "sepa_debit": {
-                "last4": "0000",
-                "bank_code": "12345",
-                "branch_code": "10000",
-                "fingerprint": "XXXXXXXXXXXXXXXX",
-                "country": "FR",
-                "mandate_reference": "XXXXXXXXXXXXXXXX",
-                "mandate_url": "https://hooks.stripe.com/adapter/sepa_debit/file/..."
-              },
-              "statement_descriptor": null,
-              "status": "chargeable",
-              "type": "sepa_debit",
-              "usage": "reusable"
-            }'''),
-            stripe.api_key
-        )
+        source_retrieve.return_value = consumed_source
         r = self.client.GET('/alice/receipts/direct/%i' % payin.id, auth_as=alice)
         assert r.code == 200
         assert ' fully refunded ' in r.text

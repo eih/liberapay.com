@@ -458,6 +458,10 @@ msgstr "Jos et ole antanut lupaa tähän maksuun, kerro meille ja hyvitämme sen
 msgid "Once this payment has been processed it should appear on your bank statement as “{descriptor}”."
 msgstr "Kun maksu on käsitelty, se näkyy tiliotteellasi merkinnällä ”{descriptor}”."
 
+#, python-brace-format
+msgid "Processing this kind of payment takes {timedelta} on average."
+msgstr "Tämäntyyppisen maksun käsittelyssä kestää tyypillisesti {timedelta}."
+
 msgid "Your payment has succeeded"
 msgstr "Maksusi onnistui"
 
@@ -1339,6 +1343,9 @@ msgstr "({x_percent} käännetty)"
 msgid "Help us translate Liberapay"
 msgstr "Auta Liberapay-palvelun kääntämisessä"
 
+msgid "Your account"
+msgstr "Tilisi"
+
 msgid "Profile"
 msgstr "Profiili"
 
@@ -1432,9 +1439,8 @@ msgstr[1] "{0} saa {1} viikossa {n} tukijalta."
 msgid "Goal: {0}"
 msgstr "Tavoite: {0}"
 
-#, python-brace-format
-msgid "Donating ({amount})"
-msgstr "Lahjoitat ({amount})"
+msgid "Modify your donation"
+msgstr "Muuta lahjoitustasi"
 
 msgid "Pledge"
 msgstr "Tee maksulupaus"
@@ -1462,6 +1468,12 @@ msgstr "Salasana (ei pakollinen)"
 msgid "If you've {bold}lost your password{bold_end}, or if your account doesn't have a password at all, then leave the password field empty. We'll send you a login link via email."
 msgstr "{bold}Jos olet hukannut salasanasi{bold_end} tai jos tililläsi ei ole salasanaa, jätä edellinen kenttä tyhjäksi. Lähetämme sinulle sähköpostitse kirjautumislinkin."
 
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Default avatar"
+msgstr "Oletus-avatar"
+
 msgid "Find great people to donate to"
 msgstr "Etsi upeita ihmisiä, joille lahjoittaa"
 
@@ -1473,9 +1485,6 @@ msgstr "Erota"
 
 msgid "This is not supported yet"
 msgstr "Tätä ei vielä tueta"
-
-msgid "Connect"
-msgstr "Yhdistä"
 
 msgid "username"
 msgstr "käyttäjätunnus"
@@ -1549,6 +1558,10 @@ msgstr "Järjestön nimi"
 msgid "Headquarters Address"
 msgstr "Päämajan osoite"
 
+#, python-brace-format
+msgid "Show the {submenu_label} submenu"
+msgstr "Näytä {submenu_label} -alivalikko"
+
 msgid "Introduction"
 msgstr "Esittely"
 
@@ -1599,9 +1612,6 @@ msgstr "Yhteisöt"
 
 msgid "Name"
 msgstr "Nimi"
-
-msgid "Avatar"
-msgstr "Avatar"
 
 msgid "Currencies"
 msgstr "Valuutat"
@@ -1693,9 +1703,6 @@ msgstr "viikossa"
 
 msgid "Modify your pledge"
 msgstr "Muuta lupaustasi"
-
-msgid "Modify your donation"
-msgstr "Muuta lahjoitustasi"
 
 msgid "Pledges"
 msgstr "Maksulupauksia"
@@ -2116,6 +2123,15 @@ msgstr "Stripe muuntaa automaattisesti rahat päävaluutallesi, mutta PayPal ole
 msgid "Connecting the accounts you own on other platforms makes your Liberapay profile easier to find, and helps to demonstrate that you are who you claim to be."
 msgstr "Yhdistäminen muissa palveluissa oleviin tileihisi helpottaa Liberapay-profiilisi löytämistä. Se myös auttaa sen todistamisessa, että olet kuka väität olevasi."
 
+#, python-brace-format
+msgid "You currently have {n} connected account:"
+msgid_plural "You currently have {n} connected accounts:"
+msgstr[0] "Sinulla on {n} yhdistetty tili:"
+msgstr[1] "Sinulla on {n} yhdistettyä tiliä:"
+
+msgid "Connect an account"
+msgstr "Yhdistä tili"
+
 msgid "I'm grateful for gifts, but don't have a specific funding goal."
 msgstr "Arvostan lahjoituksia, mutta minulla ei ole tiettyä rahoituspäämäärää."
 
@@ -2238,6 +2254,16 @@ msgstr "Tutki ryhmiä"
 msgid "About teams"
 msgstr "Tietoa ryhmistä"
 
+#, python-brace-format
+msgid ""
+"When you modify your username, the web address of your profile changes accordingly. A redirect from the old URL to the new one is put in place, but any user can remove it by claiming your old username, so you should update all the links to your profile that you've placed on other websites, unless those links contain your immutable account ID ({account_id}) instead of your username.\n"
+"\n"
+"Are you sure you want to change your username?"
+msgstr ""
+"Kun muutat käyttäjänimeäsi, web-profiilisi osoite muuttuu. Palvelu ohjaa automaattisesti vanhasta osoitteesta uuteen, mutta uudelleenohjaus lakkaa toimimasta siinä tapauksessa, jos joku uusi käyttäjä ottaa käyttöön vanhan käyttäjänimesi. Sinun tulisikin päivittää linkit profiiliisi kaikilla muilla web-sivustoilla, minne olet niitä asettanut, paitsi mikäli linkeissä on käytössä muuttumaton käyttäjä-ID:si {account_id} käyttäjätunnuksesi sijaan.\n"
+"\n"
+"Haluatko varmasti vaihtaa käyttäjänimesi?"
+
 msgid "Username"
 msgstr "Käyttäjätunnus"
 
@@ -2250,9 +2276,6 @@ msgstr "Maksimipituus on {0}."
 
 msgid "Allowed characters: latin alphanumerics, dots (.), dashes (-), and underscores (_)."
 msgstr "Sallitut merkit: alfanumeeriset merkit, piste (.), väliviiva (-) ja alleviiva (_)."
-
-msgid "Have you linked to your Liberapay profile from other websites? Be sure to update those links!"
-msgstr "Oletko linkannut Liberapay-profiiliisi muilta web-sivuilta? Muistathan päivittää linkit!"
 
 msgid "Name (optional)"
 msgstr "Nimi (vapaaehtoinen)"
@@ -2504,11 +2527,17 @@ msgstr "Kortti"
 msgid "Currently unavailable"
 msgstr "Tällä hetkellä ei käytettävissä"
 
+msgid "Pay by card"
+msgstr "Maksa kortilla"
+
 msgid "Euro donations only"
 msgstr "Vain euromääräiset lahjoitukset"
 
 msgid "Euro bank accounts only"
 msgstr "Vain euromääräiset pankkitilit"
+
+msgid "Pay by direct debit"
+msgstr "Maksa suoraveloituksella"
 
 #, python-brace-format
 msgid "Doesn't support the {currency}"
@@ -2519,6 +2548,9 @@ msgstr "Automaattinen uusiminen ei ole tuettu"
 
 msgid "Not anonymous"
 msgstr "Ei nimetön"
+
+msgid "Pay with PayPal"
+msgstr "Maksa PayPalilla"
 
 #, python-brace-format
 msgid "Your donation to {team} cannot be processed because it would be sending money to yourself."
@@ -2753,6 +2785,19 @@ msgstr "Osuutesi on nyt {0}."
 #, python-brace-format
 msgid "{username}'s profile"
 msgstr "Käyttäjän {username} profiili"
+
+#, python-brace-format
+msgid "<unused singular (hash=8485a1bf550d6d1f52f5274e15580f6e)>"
+msgid_plural "This profile is available in {n} languages"
+msgstr[0] "mörgö"
+msgstr[1] "Tämä profiili on tarjolla {n} kielellä"
+
+msgid "Show the list of languages"
+msgstr "Näytä kielet"
+
+#, python-brace-format
+msgid "This profile is only available in {language}"
+msgstr "Tämä profiili on tarjolla vain kielellä {language}"
 
 msgid "Edit"
 msgstr "Muokkaa"
@@ -3365,6 +3410,12 @@ msgstr "Sinulla ei ole toimivaa maksuvälinettä."
 
 msgid "Add a payment instrument:"
 msgstr "Lisää maksuväline:"
+
+msgid "Add a card"
+msgstr "Lisää kortti"
+
+msgid "Add a bank account"
+msgstr "Lisää pankkitili"
 
 msgid "You still have money in this Liberapay account, please choose a disbursement method below or contact support."
 msgstr "Tällä Liberapay-tililläsi on yhä rahaa. Valitse alta jokin palautusmenetelmä, tai ota yhteyttä tukeen."
@@ -4020,17 +4071,20 @@ msgstr "Kunniamerkit sivustolta {link_open}Shields.io{link_close}"
 msgid "Use these code snippets to add a badge to your website or README:"
 msgstr "Lisää sivustoosi tai README-tiedostoosi kunniamerkki näiden koodinpätkien avulla:"
 
-msgid "To contact us privately:"
-msgstr "Meihin voi ottaa yhteyttä yksityisesti:"
+msgid "To contact the Liberapay team privately:"
+msgstr "Ottaaksesi yhteyttä Liberapay-ryhmään yksityisesti:"
 
 msgid "Send us an email"
 msgstr "Lähetä sähköpostia"
 
-msgid "We are currently able to answer in English and French."
-msgstr "Voimme vastata tällä hetkellä vain englanniksi ja ranskaksi."
+msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
+msgstr "Mikäli viestisi ei ole kirjoitettu englanniksi tai ranskaksi, se käännetään automaattisesti konekäännöksenä. Vastauksemme kielellesi käännetään vastaavasti."
 
 msgid "We currently don't have a phone number."
 msgstr "Meillä ei tällä hetkellä ole puhelinnumeroa."
+
+msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
+msgstr "Älä ota meihin yhteyttä, mikäli tarkoituksesi on ottaa yhteyttä johonkin käyttäjäämme. Emme välitä viestejä edelleen, emmekä paljasta käyttäjiemme identiteettiä tai yhteystietoja ilman oikeuden määräystä."
 
 msgid "To report a problem or make a suggestion in English:"
 msgstr "Ilmoittaaksesi ongelmasta tai ehdottaaksesi jotain englanniksi:"
@@ -4332,6 +4386,9 @@ msgstr "Teemme parhaamme varjellaksemme jokaisen yksityisyyttä: Emme yritä jä
 
 msgid "Cookies"
 msgstr "Evästeet"
+
+msgid "A cookie is a piece of information sent by a website to your browser, stored on your machine, and resent by your browser to that same website in every subsequent request."
+msgstr "Eväste on web-sivuston selaimelle lähettämä tiedonpalanen, joka tallennetaan tietokoneelle, ja jonka selain lähettää takaisin samalle sivustolle kaikissa seuraavissa sivunlatauspyynnöissä."
 
 msgid "The liberapay.com website only sets technical cookies which are required to authenticate the user or to perform a specific operation. These cookies are restricted to same-site requests, so we don't know who visits websites that contain Liberapay widgets."
 msgstr "Liberapay.com-sivusto käyttää ainoastaan teknisiä evästeitä, jotka vaaditaan käyttäjäoikeuksien tunnistamiseksi tiettyä toimintoa varten. Nämä evästeet on rajoitettu koskemaan vain kyseistä sivustoa, joten emme tiedä, kuka käyttää sivustoja, jotka sisältävät Liberapayn leikkeitä."
@@ -5183,13 +5240,13 @@ msgstr "Sähköpostiosoitetta {0} ei voitu yhdistää tiliisi, koska se oli jo k
 
 #, python-brace-format
 msgid ""
-"We were unable to determine if you are a member of the {0} team on {1}.\n"
+"We were unable to determine if you are a member of the {team_name} team on {platform_name}.\n"
 "\n"
-"Please {2}check that you gave us the necessary permissions{3}."
+"Please {link_start}make sure your membership of the team is public{link_end}."
 msgstr ""
-"Emme kyenneet varmistamaan, oletko ryhmän {0} jäsen {1}-palvelussa.\n"
+"Emme voi varmistaa, oletko ryhmän {team_name} jäsen {platform_name} -palvelussa.\n"
 "\n"
-"{2}Tarkasta, että olet antanut meille tarvittavat käyttöoikeudet{3}."
+"{link_start}Varmista, että ryhmän jäsenyystietosi on julkinen{link_end}."
 
 #, python-brace-format
 msgid "Are you really an administrator of the {0} team?"
@@ -5329,6 +5386,9 @@ msgstr "Päivitä yhteytesi {0} -palveluun löytääksesi ystäväsi sieltä."
 msgid "Connect your {0} account to find your friends from there."
 msgstr "Yhdistä {0} -tiliisi löytääksesi ystäväsi sieltä."
 
+msgid "Connect"
+msgstr "Yhdistä"
+
 msgid "No friends found."
 msgstr "Ystäviä ei löytynyt."
 
@@ -5383,9 +5443,6 @@ msgstr "Ei yhdistettyjä tilejä."
 
 msgid "How the accounts will be after the transfer"
 msgstr "Kuinka tilit ovat siirron jälkeen"
-
-msgid "Abandoned:"
-msgstr "Hylätyt:"
 
 msgid "Transfer the account"
 msgstr "Siirrä tili"

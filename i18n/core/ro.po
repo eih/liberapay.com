@@ -446,6 +446,10 @@ msgstr ""
 msgid "Once this payment has been processed it should appear on your bank statement as “{descriptor}”."
 msgstr ""
 
+#, python-brace-format
+msgid "Processing this kind of payment takes {timedelta} on average."
+msgstr ""
+
 msgid "Your payment has succeeded"
 msgstr "Plata a avut succes"
 
@@ -1334,6 +1338,9 @@ msgstr "(tradusă {x_percent})"
 msgid "Help us translate Liberapay"
 msgstr "Ajutați-ne să traducem Liberapay"
 
+msgid "Your account"
+msgstr ""
+
 msgid "Profile"
 msgstr "Profil"
 
@@ -1429,9 +1436,8 @@ msgstr[2] "{0} primește {1} pe săptămână de la {n} de susținători."
 msgid "Goal: {0}"
 msgstr "Țel: {0}"
 
-#, python-brace-format
-msgid "Donating ({amount})"
-msgstr "Donați ({amount})"
+msgid "Modify your donation"
+msgstr "Modificați donația"
 
 msgid "Pledge"
 msgstr "Angajament"
@@ -1459,6 +1465,12 @@ msgstr "Parolă (opțională)"
 msgid "If you've {bold}lost your password{bold_end}, or if your account doesn't have a password at all, then leave the password field empty. We'll send you a login link via email."
 msgstr "Lăsați câmpul precedent gol dacă contul dumneavoastră nu are o parolă, sau dacă ați pierdut-o. Vă vom trimite o legătură de autentificare prin e-mail."
 
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Default avatar"
+msgstr ""
+
 msgid "Find great people to donate to"
 msgstr "Găsiți oameni măreți cărora să le donați"
 
@@ -1470,9 +1482,6 @@ msgstr "Deconectează"
 
 msgid "This is not supported yet"
 msgstr "Aceasta nu este suportată încă"
-
-msgid "Connect"
-msgstr "Conectează"
 
 msgid "username"
 msgstr "nume de utilizator"
@@ -1546,6 +1555,10 @@ msgstr "Numele organizației"
 msgid "Headquarters Address"
 msgstr "Adresa sediului"
 
+#, python-brace-format
+msgid "Show the {submenu_label} submenu"
+msgstr ""
+
 msgid "Introduction"
 msgstr "Introducere"
 
@@ -1597,9 +1610,6 @@ msgstr "Comunități"
 
 msgid "Name"
 msgstr "Nume"
-
-msgid "Avatar"
-msgstr "Avatar"
 
 msgid "Currencies"
 msgstr "Valute"
@@ -1691,9 +1701,6 @@ msgstr "pe săptămână"
 
 msgid "Modify your pledge"
 msgstr "Modificați angajamentul"
-
-msgid "Modify your donation"
-msgstr "Modificați donația"
 
 msgid "Pledges"
 msgstr "Angajamente"
@@ -2117,6 +2124,16 @@ msgstr ""
 msgid "Connecting the accounts you own on other platforms makes your Liberapay profile easier to find, and helps to demonstrate that you are who you claim to be."
 msgstr "Conectând conturile, de pe alte platforme, pe care le dețineți va facilita găsirea profilului dumneavoastră de Liberapay, și vă va ajuta să demonstrați că sunteți persoana care pretindeți a fi."
 
+#, python-brace-format
+msgid "You currently have {n} connected account:"
+msgid_plural "You currently have {n} connected accounts:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Connect an account"
+msgstr ""
+
 msgid "I'm grateful for gifts, but don't have a specific funding goal."
 msgstr "Sunt deschis la daruri, dar nu am un țel de finanțare specific."
 
@@ -2240,6 +2257,13 @@ msgstr "Explorează echipe"
 msgid "About teams"
 msgstr "Despre echipe"
 
+#, python-brace-format
+msgid ""
+"When you modify your username, the web address of your profile changes accordingly. A redirect from the old URL to the new one is put in place, but any user can remove it by claiming your old username, so you should update all the links to your profile that you've placed on other websites, unless those links contain your immutable account ID ({account_id}) instead of your username.\n"
+"\n"
+"Are you sure you want to change your username?"
+msgstr ""
+
 msgid "Username"
 msgstr "Nume de utilizator"
 
@@ -2252,9 +2276,6 @@ msgstr "Lungimea maximă este {0}."
 
 msgid "Allowed characters: latin alphanumerics, dots (.), dashes (-), and underscores (_)."
 msgstr "Simboluri permise: alfanumerice latine, puncte (.), liniuțe (-) și sublinieri (_)."
-
-msgid "Have you linked to your Liberapay profile from other websites? Be sure to update those links!"
-msgstr "Ați conectat profilul Liberapay pe alte situri? Asigurați-vă că ați actualizat și acele legături!"
 
 msgid "Name (optional)"
 msgstr "Nume (facultativ)"
@@ -2509,11 +2530,17 @@ msgstr "Card"
 msgid "Currently unavailable"
 msgstr "Indisponibil momentan"
 
+msgid "Pay by card"
+msgstr ""
+
 msgid "Euro donations only"
 msgstr "Numai donații în euro"
 
 msgid "Euro bank accounts only"
 msgstr "Numai conturi bancare în Euro"
+
+msgid "Pay by direct debit"
+msgstr ""
 
 #, python-brace-format
 msgid "Doesn't support the {currency}"
@@ -2524,6 +2551,9 @@ msgstr ""
 
 msgid "Not anonymous"
 msgstr "Nu este anonim"
+
+msgid "Pay with PayPal"
+msgstr ""
 
 #, python-brace-format
 msgid "Your donation to {team} cannot be processed because it would be sending money to yourself."
@@ -2761,6 +2791,20 @@ msgstr "Beneficiul dumneavoastră este acum {0}."
 #, python-brace-format
 msgid "{username}'s profile"
 msgstr "Profilul lui {username}"
+
+#, python-brace-format
+msgid "<unused singular (hash=8485a1bf550d6d1f52f5274e15580f6e)>"
+msgid_plural "This profile is available in {n} languages"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Show the list of languages"
+msgstr ""
+
+#, python-brace-format
+msgid "This profile is only available in {language}"
+msgstr ""
 
 msgid "Edit"
 msgstr "Editează"
@@ -3377,6 +3421,12 @@ msgid "You don't have any valid payment instrument."
 msgstr ""
 
 msgid "Add a payment instrument:"
+msgstr ""
+
+msgid "Add a card"
+msgstr ""
+
+msgid "Add a bank account"
 msgstr ""
 
 msgid "You still have money in this Liberapay account, please choose a disbursement method below or contact support."
@@ -4042,17 +4092,20 @@ msgstr "Insigne de la {link_open}Shields.io{link_close}"
 msgid "Use these code snippets to add a badge to your website or README:"
 msgstr "Utilizați aceste fragmente de cod pentru a adăuga o insignă sitului sau README-ului dumneavoastră:"
 
-msgid "To contact us privately:"
-msgstr "Pentru a ne contacta în privat:"
+msgid "To contact the Liberapay team privately:"
+msgstr ""
 
 msgid "Send us an email"
 msgstr "Trimiteți-ne un e-mail"
 
-msgid "We are currently able to answer in English and French."
-msgstr "Momentan putem răspunde în engleză și franceză."
+msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
+msgstr ""
 
 msgid "We currently don't have a phone number."
 msgstr "Momentan nu avem un număr de telefon."
+
+msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
+msgstr ""
 
 msgid "To report a problem or make a suggestion in English:"
 msgstr "Pentru a raporta o promblemă sau a face o sugestie în engleză:"
@@ -4355,6 +4408,9 @@ msgid "We do our best to protect everyone's privacy: we do not attempt to track 
 msgstr "Ne străduim să protejăm viața privată a fiecăruia: nu încercăm să monitorizăm oamenii care vizitează situl, încercăm să colectăm numai informațiile personale de care avem cu adevărat nevoie, și nu le vindem nimănui."
 
 msgid "Cookies"
+msgstr ""
+
+msgid "A cookie is a piece of information sent by a website to your browser, stored on your machine, and resent by your browser to that same website in every subsequent request."
 msgstr ""
 
 msgid "The liberapay.com website only sets technical cookies which are required to authenticate the user or to perform a specific operation. These cookies are restricted to same-site requests, so we don't know who visits websites that contain Liberapay widgets."
@@ -5237,13 +5293,10 @@ msgstr "Adresa de e-mail {0} nuu a putut fi conectată la contul dumneavoastră 
 
 #, python-brace-format
 msgid ""
-"We were unable to determine if you are a member of the {0} team on {1}.\n"
+"We were unable to determine if you are a member of the {team_name} team on {platform_name}.\n"
 "\n"
-"Please {2}check that you gave us the necessary permissions{3}."
+"Please {link_start}make sure your membership of the team is public{link_end}."
 msgstr ""
-"Nu am putut determina dacă sunteți membru al echipei {0} pe {1}.\n"
-"\n"
-"{2}Verificați dacă ne-ați oferit permisiile necesare{3}."
 
 #, python-brace-format
 msgid "Are you really an administrator of the {0} team?"
@@ -5385,6 +5438,9 @@ msgstr "Reîmprospătați conexiunea la {0} pentru a găsi prieteni de acolo."
 msgid "Connect your {0} account to find your friends from there."
 msgstr "Conectați-vă contul {0} pentru a găsi prieteni de acolo."
 
+msgid "Connect"
+msgstr "Conectează"
+
 msgid "No friends found."
 msgstr "Niciun prieten găsit."
 
@@ -5440,9 +5496,6 @@ msgstr "Niciun cont conectat."
 
 msgid "How the accounts will be after the transfer"
 msgstr "Cum vor fi conturile după transfer"
-
-msgid "Abandoned:"
-msgstr "Abandonat:"
 
 msgid "Transfer the account"
 msgstr "Transferă contul"

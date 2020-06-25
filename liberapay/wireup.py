@@ -10,6 +10,7 @@ from tempfile import mkstemp
 from time import time
 import traceback
 
+import babel.localedata
 from babel.messages.pofile import read_po
 from babel.numbers import parse_pattern
 import boto3
@@ -555,10 +556,12 @@ def make_sentry_teller(env, version):
 class PlatformRegistry(object):
     """Registry of platforms we support.
     """
+
     def __init__(self, platforms):
         self.list = platforms
         self.dict = dict((p.name, p) for p in platforms)
         self.__dict__.update(self.dict)
+        self.order = dict((p.name, i) for i, p in enumerate(platforms))
         self._hasattr_cache = {}
 
     def __contains__(self, platform):
@@ -581,6 +584,9 @@ class PlatformRegistry(object):
     def hasattr(self, attr):
         r = self._hasattr_cache.get(attr)
         return r or self._cache_hasattr(attr)
+
+    def index(self, name):
+        return self.order[name]
 
 
 def accounts_elsewhere(app_conf, asset, canonical_url, db):
@@ -699,6 +705,14 @@ def load_i18n(canonical_host, canonical_scheme, project_root, tell_sentry):
             tell_sentry(e, {})
     del source_strings
 
+    # Unload the Babel data that we no longer need
+    # We load a lot of data to populate the LANGUAGE_NAMES dict, we don't want
+    # to keep it all in RAM.
+    used_data_dict_addresses = set(id(l._data._data) for l in locales.values())
+    for key, data_dict in list(babel.localedata._cache.items()):
+        if id(data_dict) not in used_data_dict_addresses:
+            del babel.localedata._cache[key]
+
     # Prepare a unique and sorted list for use in the language switcher
     percent = lambda l, total: sum((percent(s, len(s)) if isinstance(s, tuple) else 1) for s in l if s) / total
     for l in list(locales.values()):
@@ -736,6 +750,12 @@ def load_i18n(canonical_host, canonical_scheme, project_root, tell_sentry):
         locales.setdefault(ALIASES_R.get(k, k), v)
     for k, v in list(locales.items()):
         locales.setdefault(k.split('_', 1)[0], v)
+
+    # Add universal strings
+    # These strings don't need to be translated, but they have to be in the catalogs
+    # so that they're counted as translated.
+    for l in locales.values():
+        l.catalog.add("PayPal", "PayPal")
 
     # Patch the locales to look less formal
     locales['fr'].currency_formats['standard'] = parse_pattern('#,##0.00\u202f\xa4')

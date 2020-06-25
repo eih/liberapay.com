@@ -68,14 +68,21 @@ class Year(int):
 
 class Age(timedelta):
 
+    __slots__ = ('format_args',)
+
     def __new__(cls, *a, **kw):
+        format_args = kw.pop('format_args', {})
         if len(a) == 1 and not kw and isinstance(a[0], timedelta):
-            return timedelta.__new__(cls, a[0].days, a[0].seconds, a[0].microseconds)
-        return timedelta.__new__(cls, *a, **kw)
+            r = timedelta.__new__(cls, a[0].days, a[0].seconds, a[0].microseconds)
+        else:
+            r = timedelta.__new__(cls, *a, **kw)
+        r.format_args = format_args
+        return r
 
 
 class Locale(babel.core.Locale):
 
+    Age = Age
     List = List
 
     def __init__(self, *a, **kw):
@@ -341,6 +348,12 @@ LANGUAGE_CODES_2 = """
     nd ne nl nn nr om or os pa pl ps pt rm rn ro ru rw se sg si sk sl sn so sq
     sr ss st sv sw ta te tg th ti tn to tr ts uk ur uz ve vi vo xh yo zh zu
 """.split()
+
+Locale.LANGUAGE_NAMES = {
+    code: babel.localedata.load(code)['languages'][code]
+    for code in LANGUAGE_CODES_2
+    if babel.localedata.exists(code)
+}
 
 LANGUAGES_2 = make_sorted_dict(LANGUAGE_CODES_2, Locale('en').languages)
 

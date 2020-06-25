@@ -16,9 +16,8 @@ msgstr "Den {language}e oversættelse af denne side er endnu ikke klar."
 msgid "Greetings,"
 msgstr "Velkommen,"
 
-#, fuzzy
 msgid "Something wrong? This email was sent automatically, but you can contact us by replying to it."
-msgstr "Er der noget der ikke virker? svar på denne e-mail for at få hjælp."
+msgstr "Er der noget der ikke virker? Denne e-mail blev sendt automatisk, men du kan få fat på os ved at svare på den."
 
 msgid "Change your email settings"
 msgstr "Skift dine e-mail-indstillinger"
@@ -459,6 +458,10 @@ msgstr "Hvis du ikke autoriserede denne betaling, så kontakt os og vi refundere
 msgid "Once this payment has been processed it should appear on your bank statement as “{descriptor}”."
 msgstr "Når denne betaling er blevet behandlet, skal den gerne dukke op på din kontoudskrift som \"{descriptor}\"."
 
+#, python-brace-format
+msgid "Processing this kind of payment takes {timedelta} on average."
+msgstr "Behandling af denne type betaling tager i gennemsnit {timedelta}."
+
 msgid "Your payment has succeeded"
 msgstr "Din betaling er gennemført"
 
@@ -674,7 +677,7 @@ msgstr "Hvis du ønsker at ændre dine donationer, skal du klikke på følgende 
 
 #, python-brace-format
 msgid "A receipt will be available once the payment has been successfully processed. You can see all your payments and receipts in {link_start}your account's ledger{link_end}."
-msgstr ""
+msgstr "En kvittering vil være tilgængelig når betalingen er behandlet. Du kan se alle dine betalinger og kvitteringer i {link_start}din kontos hovedbog{link_end}."
 
 msgid "Email address verification - Liberapay"
 msgstr "E-mailadresse verifikation - Liberapay"
@@ -1340,6 +1343,9 @@ msgstr "({x_percent} oversat)"
 msgid "Help us translate Liberapay"
 msgstr "Hjælp os med at oversætte Liberapay"
 
+msgid "Your account"
+msgstr "Din konto"
+
 msgid "Profile"
 msgstr "Profil"
 
@@ -1433,9 +1439,8 @@ msgstr[1] "{0} modtager {1} hver uge fra {n} bidragsydere."
 msgid "Goal: {0}"
 msgstr "Mål: {0}"
 
-#, python-brace-format
-msgid "Donating ({amount})"
-msgstr "Doner ({amount})"
+msgid "Modify your donation"
+msgstr "Lav om på din donation"
 
 msgid "Pledge"
 msgstr "Donationstilbud"
@@ -1463,6 +1468,12 @@ msgstr "Adgangskode (valgfrit)"
 msgid "If you've {bold}lost your password{bold_end}, or if your account doesn't have a password at all, then leave the password field empty. We'll send you a login link via email."
 msgstr "Lad det foregående felt stå tomt hvis {bold}du har mistet dit kodeord{bold_end} eller din konto ikke har en adgangskode. Vi sender dig et login-link via e-mail."
 
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Default avatar"
+msgstr "Standardavatar"
+
 msgid "Find great people to donate to"
 msgstr "Find nogen at donere til"
 
@@ -1474,9 +1485,6 @@ msgstr "Log af"
 
 msgid "This is not supported yet"
 msgstr "Dette er ikke understøttet endnu"
-
-msgid "Connect"
-msgstr "Forbind"
 
 msgid "username"
 msgstr "brugernavn"
@@ -1550,6 +1558,10 @@ msgstr "Organisations navn"
 msgid "Headquarters Address"
 msgstr "Hovedkvarters Adresse"
 
+#, python-brace-format
+msgid "Show the {submenu_label} submenu"
+msgstr "Vis {submenu_label} undermenuen"
+
 msgid "Introduction"
 msgstr "Introduktion"
 
@@ -1600,9 +1612,6 @@ msgstr "Fælleskaber"
 
 msgid "Name"
 msgstr "Navn"
-
-msgid "Avatar"
-msgstr "Avatar"
 
 msgid "Currencies"
 msgstr "Valutaer"
@@ -1694,9 +1703,6 @@ msgstr "per uge"
 
 msgid "Modify your pledge"
 msgstr "Lav om på dit donationstilbud"
-
-msgid "Modify your donation"
-msgstr "Lav om på din donation"
 
 msgid "Pledges"
 msgstr "Donationstilbud"
@@ -2117,6 +2123,15 @@ msgstr "Stripe konverterer automatisk penge til din hovedvaluta, men som standar
 msgid "Connecting the accounts you own on other platforms makes your Liberapay profile easier to find, and helps to demonstrate that you are who you claim to be."
 msgstr "Forbinde de kontoer du ejer på andre platforme gør din Liberapay profil nemmere at finde og hjælper med at vise at du er hvem du udgiver dig for at være."
 
+#, python-brace-format
+msgid "You currently have {n} connected account:"
+msgid_plural "You currently have {n} connected accounts:"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Connect an account"
+msgstr ""
+
 msgid "I'm grateful for gifts, but don't have a specific funding goal."
 msgstr "Jeg er taknemmelig for gaver, men har ikke et specifikt finansieringsmål."
 
@@ -2239,6 +2254,13 @@ msgstr "Udforsk teams"
 msgid "About teams"
 msgstr "Om teams"
 
+#, python-brace-format
+msgid ""
+"When you modify your username, the web address of your profile changes accordingly. A redirect from the old URL to the new one is put in place, but any user can remove it by claiming your old username, so you should update all the links to your profile that you've placed on other websites, unless those links contain your immutable account ID ({account_id}) instead of your username.\n"
+"\n"
+"Are you sure you want to change your username?"
+msgstr ""
+
 msgid "Username"
 msgstr "Brugernavn"
 
@@ -2251,9 +2273,6 @@ msgstr "Maksimum længde er {0}."
 
 msgid "Allowed characters: latin alphanumerics, dots (.), dashes (-), and underscores (_)."
 msgstr "Tilladte tegn: Latin alfanumerisk, prikker (.), Bindestreger (-) og understregninger (_)."
-
-msgid "Have you linked to your Liberapay profile from other websites? Be sure to update those links!"
-msgstr "Har du linket til din Liberapay-profil fra andre hjemmesider, så husk at opdatere disse links!"
 
 msgid "Name (optional)"
 msgstr "Navn (valgfrit)"
@@ -2505,11 +2524,17 @@ msgstr "Kort"
 msgid "Currently unavailable"
 msgstr "Ikke tilgængelig i øjeblikket"
 
+msgid "Pay by card"
+msgstr ""
+
 msgid "Euro donations only"
 msgstr "Kun Euro donationer"
 
 msgid "Euro bank accounts only"
 msgstr "Kun Euro-bankkontoer"
+
+msgid "Pay by direct debit"
+msgstr ""
 
 #, python-brace-format
 msgid "Doesn't support the {currency}"
@@ -2520,6 +2545,9 @@ msgstr "Understøtter ikke automatisk betaling"
 
 msgid "Not anonymous"
 msgstr "Ikke anonym"
+
+msgid "Pay with PayPal"
+msgstr ""
 
 #, python-brace-format
 msgid "Your donation to {team} cannot be processed because it would be sending money to yourself."
@@ -2754,6 +2782,19 @@ msgstr "Din del er nu {0}."
 #, python-brace-format
 msgid "{username}'s profile"
 msgstr "{username}'s profil"
+
+#, python-brace-format
+msgid "<unused singular (hash=8485a1bf550d6d1f52f5274e15580f6e)>"
+msgid_plural "This profile is available in {n} languages"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Show the list of languages"
+msgstr ""
+
+#, python-brace-format
+msgid "This profile is only available in {language}"
+msgstr ""
 
 msgid "Edit"
 msgstr "Rediger"
@@ -3366,6 +3407,12 @@ msgstr "Du har ikke nogen gyldig betalingsmetode."
 
 msgid "Add a payment instrument:"
 msgstr "Tilføj betalingsmetode:"
+
+msgid "Add a card"
+msgstr ""
+
+msgid "Add a bank account"
+msgstr ""
 
 msgid "You still have money in this Liberapay account, please choose a disbursement method below or contact support."
 msgstr "Du har stadig penge på denne Liberapay-konto, vælg venligst en udbetalingsmetode nedenfor eller kontakt support."
@@ -4021,17 +4068,20 @@ msgstr "Badges fra {link_open}Bankkontoen skal tilhøre dig. Det er ikke tilladt
 msgid "Use these code snippets to add a badge to your website or README:"
 msgstr "Brug disse kodestykker til at tilføje et badge til din hjemmeside eller README:"
 
-msgid "To contact us privately:"
-msgstr "For at kontakte os under private forhold:"
+msgid "To contact the Liberapay team privately:"
+msgstr ""
 
 msgid "Send us an email"
 msgstr "Send os en e-mail"
 
-msgid "We are currently able to answer in English and French."
-msgstr "Vi kan for tiden svare på engelsk og fransk."
+msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
+msgstr ""
 
 msgid "We currently don't have a phone number."
 msgstr "Vi har for tiden ikke et telefonnummer."
+
+msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
+msgstr ""
 
 msgid "To report a problem or make a suggestion in English:"
 msgstr "For at rapportere et problem eller give et forslag på engelsk:"
@@ -4331,6 +4381,9 @@ msgid "We do our best to protect everyone's privacy: we do not attempt to track 
 msgstr "Vi gør vores bedste for at beskytte alles privatliv: Vi forsøger ikke at spore folk der besøger vores hjemmeside. Vi stræber efter kun at indsamle de personlige oplysninger vi faktisk har brug for, og vi sælger dem ikke til nogen."
 
 msgid "Cookies"
+msgstr ""
+
+msgid "A cookie is a piece of information sent by a website to your browser, stored on your machine, and resent by your browser to that same website in every subsequent request."
 msgstr ""
 
 msgid "The liberapay.com website only sets technical cookies which are required to authenticate the user or to perform a specific operation. These cookies are restricted to same-site requests, so we don't know who visits websites that contain Liberapay widgets."
@@ -5183,13 +5236,10 @@ msgstr "E-mailadressen {0} kunne ikke linkes til din konto fordi den allerede va
 
 #, python-brace-format
 msgid ""
-"We were unable to determine if you are a member of the {0} team on {1}.\n"
+"We were unable to determine if you are a member of the {team_name} team on {platform_name}.\n"
 "\n"
-"Please {2}check that you gave us the necessary permissions{3}."
+"Please {link_start}make sure your membership of the team is public{link_end}."
 msgstr ""
-"Vi kunne ikke afgøre om du er medlem af {0} holdet på {1}.\n"
-"\n"
-"Check venligst {2}at du gav os de nødvendige tilladelser{3}."
 
 #, python-brace-format
 msgid "Are you really an administrator of the {0} team?"
@@ -5329,6 +5379,9 @@ msgstr "Opdater din {0} forbindelse for at finde dine venner derfra."
 msgid "Connect your {0} account to find your friends from there."
 msgstr "Forbind din {0} konto for at finde dine venner derfra."
 
+msgid "Connect"
+msgstr "Forbind"
+
 msgid "No friends found."
 msgstr "Ingen venner fundet."
 
@@ -5383,9 +5436,6 @@ msgstr "Ingen tilkyttede kontoer."
 
 msgid "How the accounts will be after the transfer"
 msgstr "Hvordan kontoerne er efter overførslen"
-
-msgid "Abandoned:"
-msgstr "Forladt:"
 
 msgid "Transfer the account"
 msgstr "Overfør kontoen"
